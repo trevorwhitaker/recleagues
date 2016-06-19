@@ -11,6 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('addLeague', 'PagesController@getAddLeague');
+
+Route::get('contact', 'PagesController@getContact');
+
+Route::get('links', 'PagesController@getLinks');
+
+Route::get('FAQ', 'PagesController@getFAQ');
+
+Route::get('leaguePage', 'PagesController@getLeaguePage');
+
+Route::get('/', 'PagesController@getIndex');
