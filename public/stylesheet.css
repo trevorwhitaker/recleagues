@@ -30,8 +30,14 @@
 	background: #D4CCC5;
 }
 
-.form-group {
+.form-control {
 	width: 25%;
+	margin-bottom: 10px;
+	text-align: left;
+}
+
+.addLeagueText {
+	width: 100%;
 	margin: auto;
 	text-align: center;
 }

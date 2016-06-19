@@ -18,8 +18,8 @@ class CreateLeaguesTable extends Migration
             $table->string('City', 50);
             $table->string('Province', 50);
             $table->string('Sport', 50);
-            $table->string('Type', 1);
-            $table->string('Webstie')->nullable();
+            $table->string('Type', 10);
+            $table->string('Website')->nullable();
             $table->string('Person', 100);
             $table->string('Phone', 20);
             $table->string('Email', 100);

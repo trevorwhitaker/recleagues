@@ -38,6 +38,11 @@ class PagesController extends Controller
 
 	public function getAddLeague() 
 	{
-		return view('Pages.addLeague');
+		return view('Leagues.create');
+	}
+
+	public function getConfirmation() 
+	{
+		return view('Pages.confirmation');
 	}
 }
