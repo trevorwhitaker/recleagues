@@ -5,16 +5,22 @@
 @section('title', ' | Contact Us')
 
 <p class="default-text">Have a question or a request?</p>
-<form>
-	<fieldset class="form-group">
-		<label for="ReturnEmail">Return E-mail</label>
-		<input type="email" class="form-control" id="ReturnEmail" placeholder="Enter league name">
-	</fieldset>
-	<fieldset class="form-group">
-		<label for="Description">Question/Request</label>
-		<textarea class="form-control" id="Description" rows="3">Type your message here...</textarea>
-	</fieldset>
-	<button type="submit" class="btn btn-primary center-block">Submit</button>
-</form>
+<div class="row">
+	<div class="col-md-2 col-md-offset-5">
+		{!! Form::open(array('route' => 'pages.sendContact', 'data-parsley-validate' => '')) !!}
+			{{ Form::label('email', 'Return Email Address', array('class' => 'addLeagueText')) }}
+			{{ Form::text('email', null, array('class' => 'form-control', "placeholder" => "", 'data-parsley-type' => 'email', 'required' => '', 'maxlength' => '100')) }}
+
+			{{ Form::label('text', 'Question/Request', array('class' => 'addLeagueText')) }}
+			{{ Form::textarea('text', null, array('class' => 'form-control', 'style' => 'resize: none;', "placeholder" => "Enter your message here...", 'required' => '', 'maxlength' => '400', 'minlength' => '10')) }}
+			<div class = "captcha_container">
+				{!! app('captcha')->display(); !!}
+			</div>
+							
+			{{ Form::submit('Submit', array('class' => 'btn btn-primary center-block')) }}
+
+		{!! Form::close() !!}
+	</div>
+</div>
 
 @endsection

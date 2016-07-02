@@ -41,3 +41,39 @@
 	margin: auto;
 	text-align: center;
 }
+
+.findLeagueFilters {
+	width: 100%;
+	margin: 5px;
+	text-align: center;
+}
+
+#findLeaguebutton {
+	width: 100%;
+	margin: 35px 5px 5px 5px;
+	text-align: center;
+}
+
+.findLeagueTD {
+	margin-right: 10px;
+}
+
+.leaguePageText {
+	font-family: Arial;
+	text-align: center;
+}
+
+.findLeagueNames {
+	color: blue;
+	font-size: 20px;
+	font-family: Arial;
+	text-align: center;
+}
+
+.captcha_container img{
+	width: 50%;
+	margin-left: 25%;
+	margin-bottom: 3%;
+	display: inline-block;
+	align-content: center;
+}

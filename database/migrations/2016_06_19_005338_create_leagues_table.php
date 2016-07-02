@@ -13,17 +13,17 @@ class CreateLeaguesTable extends Migration
     public function up()
     {
         Schema::create('leagues', function (Blueprint $table) {
-            $table->increments('Id');
-            $table->string('LeagueName', 250);
-            $table->string('City', 50);
-            $table->string('Province', 50);
-            $table->string('Sport', 50);
-            $table->string('Type', 10);
-            $table->string('Website')->nullable();
-            $table->string('Person', 100);
-            $table->string('Phone', 20);
-            $table->string('Email', 100);
-            $table->string('Description', 250)->default('');
+            $table->increments('id');
+            $table->string('leaguename', 100);
+            $table->string('city', 50);
+            $table->string('province', 50);
+            $table->string('sport', 50);
+            $table->string('type', 10);
+            $table->string('website')->nullable();
+            $table->string('person', 50);
+            $table->string('phone', 20);
+            $table->string('email', 100);
+            $table->string('description', 250)->default('');
         });
     }
 

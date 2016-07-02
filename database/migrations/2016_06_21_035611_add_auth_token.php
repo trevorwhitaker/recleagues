@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddValidateColumn extends Migration
+class AddAuthToken extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddValidateColumn extends Migration
     public function up()
     {
         Schema::table('leagues', function ($table) {
-            $table->boolean('validated')->default(FALSE);
+            $table->string('authToken')->after('validated');
         });
     }
 
@@ -25,7 +25,7 @@ class AddValidateColumn extends Migration
     public function down()
     {
         Schema::table('leagues', function ($table) {
-            $table->dropColumn('validated');
+            $table->dropColumn('authToken');
         });
     }
 }

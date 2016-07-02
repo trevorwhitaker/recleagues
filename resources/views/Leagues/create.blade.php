@@ -47,7 +47,7 @@
 			'Co-op' => 'Co-op'], null, ['placeholder' => '', 'class' => 'form-control', 'required' => '']) }}
 
 			{{ Form::label('website', 'Website (if available)', array('class' => 'addLeagueText')) }}
-			{{ Form::text('website', null, array('class' => 'form-control', 'maxlength' => '250', 'type' => 'url')) }}
+			{{ Form::text('website', null, array('class' => 'form-control', 'maxlength' => '250')) }}
 
 			{{ Form::label('person', 'Contact Name', array('class' => 'addLeagueText')) }}
 			{{ Form::text('person', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '100')) }}
@@ -60,6 +60,10 @@
 
 			{{ Form::label('description', 'Description', array('class' => 'addLeagueText')) }}
 			{{ Form::textarea('description', null, array('class' => 'form-control', 'style' => 'resize: none;', 'maxlength' => '100')) }}
+
+			<div class = "captcha_container">
+				{!! app('captcha')->display(); !!}
+			</div>
 
 			{{ Form::submit('Submit', array('class' => 'btn btn-primary center-block')) }}
 

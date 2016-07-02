@@ -15,12 +15,20 @@ Route::get('contact', 'PagesController@getContact');
 
 Route::get('confirmation', 'PagesController@getConfirmation');
 
-Route::get('links', 'PagesController@getLinks');
-
 Route::get('FAQ', 'PagesController@getFAQ');
 
 Route::get('leaguePage', 'PagesController@getLeaguePage');
 
-Route::get('/', 'PagesController@getIndex');
+Route::post('sendcontact', ['as' => 'pages.sendContact', 'uses' => 'PagesController@sendContact']);
 
 Route::resource('leagues', "LeagueController");
+
+Route::post('leagues/getLeagues', ['as' => 'leagues.getLeagues', 'uses' => 'LeagueController@getLeagues']);
+
+Route::get('leagues/filter/{province}/{sport}/{type}', ['as' => 'leagues.filter', 'uses' => 'LeagueController@filter']);
+
+Route::get('leagues/confirm/{id}/{authToken}', ['as' => 'leagues.confirm', 'uses' => 'LeagueController@confirmLeague']);
+
+Route::get('leagues/deny/{id}/{authToken}', ['as' => 'leagues.deny', 'uses' => 'LeagueController@denyLeague']);
+
+Route::get('/', 'PagesController@getIndex');

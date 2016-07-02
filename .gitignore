@@ -4,3 +4,6 @@
 Homestead.yaml
 Homestead.json
 .env
+
+config/services.php
+config/services.php

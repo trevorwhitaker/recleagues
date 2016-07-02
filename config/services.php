@@ -15,8 +15,8 @@ return [
     */
 
     'mailgun' => [
-        'domain' => env('MAILGUN_DOMAIN'),
-        'secret' => env('MAILGUN_SECRET'),
+        'domain' => 'recreationalleagues.ca',
+        'secret' => 'key-052c15ef652a572b25d1164a00add93e',
     ],
 
     'ses' => [

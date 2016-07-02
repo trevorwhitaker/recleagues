@@ -1,6 +1,6 @@
 - Add mail when league is added and send a link to change database to validated
 
-- Add field to league for days when they play
+- Add field to league for if play on weekday/weekend
 
 - Create search page with filters
 
