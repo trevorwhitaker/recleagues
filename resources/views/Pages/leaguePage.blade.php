@@ -57,7 +57,7 @@
 		</tbody>
 	</table>
 
-	<p style="text-align: center; font-size: 16"> Is this your league and you want to change something? Click {!! Html::linkRoute('leagues.edit', 'here', array($league->id)) !!} to submit a request. </p>
+	<p style="text-align: center; font-size: 16; margin-top: 20%; position: relative; z-index: 1;"> Is this your league and you want to change something? Click {!! Html::linkRoute('leagues.edit', 'here', array($league->id)) !!} to submit a request. </p>
 </div>
 
 @endsection

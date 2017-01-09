@@ -16,6 +16,8 @@ use Input;
 
 use Hash;
 
+use Twitter;
+
 class CommentController extends Controller
 {
     /**
@@ -67,7 +69,7 @@ class CommentController extends Controller
     {
         $this->validate($request, array(
                'name' => 'required|max:100',
-               'subject' => 'required|max:140',
+               'subject' => 'required|max:80',
                'email' => 'required|email|max:100',
                'sport' => 'required|max:50',
                'message' => 'required|max:1000',
@@ -101,7 +103,9 @@ class CommentController extends Controller
                 ->subject('Message request from '. $comment->name);
         });
 
-        Session::flash('success', 'Your message has been sent for approval.');
+        Twitter::postTweet(array('status' => 'New Message posted on the bulletin board! Topic: ' . $comment->subject . ' www.recretionalleagues.ca/messages#' . $comment->id, 'format' => 'json'));
+
+        Session::flash('success', 'Your message has added.');
 
         return redirect()->action('CommentController@index');
     }

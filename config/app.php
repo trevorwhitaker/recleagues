@@ -150,6 +150,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Mews\Captcha\CaptchaServiceProvider::class,
         Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
+        Thujohn\Twitter\TwitterServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -209,6 +210,7 @@ return [
         'Input' => Illuminate\Support\Facades\Input::class,
         'Mail' => Illuminate\Support\Facades\Mail::class,
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
+        'Twitter' => 'Thujohn\Twitter\Facades\Twitter',
     ],
 
 ];

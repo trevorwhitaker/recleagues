@@ -6,7 +6,7 @@ body {
 	margin: 0 auto;
 	background-color: #F5F5DC;
 	min-height: 100vh;
-	display: block;
+	position: relative;
 }
 
 #main-title-background {
@@ -241,7 +241,7 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.2;
+    opacity: 0.15;
 }
 
 .league-page-hockey:after {
@@ -280,6 +280,6 @@ body {
 	background-image: url('../Images/Backgrounds/volleyball.PNG');
 }
 
-.league-page-ball-hocket:after {
+.league-page-ball-hockey:after {
 	background-image: url('../Images/Backgrounds/hockey.PNG');
 }

@@ -32,6 +32,10 @@ Route::post('leagues/getLeagues', ['as' => 'leagues.getLeagues', 'uses' => 'Leag
 
 Route::get('leagues/filter/{province}/{sport}/{type}', ['as' => 'leagues.filter', 'uses' => 'LeagueController@filter']);
 
+Route::get('leagues/adminadd', ['as' => 'leagues.adminAdd', 'uses' => 'LeagueController@adminAdd'])->middleware('auth.basic');
+
+Route::post('leagues/adminadd', ['as' => 'leagues.adminStore', 'uses' => 'LeagueController@adminStore'])->middleware('auth.basic');
+
 Route::post('leagues/{leagues}', ['as' => 'leagues.update', 'uses' => 'LeagueController@update']);
 
 Route::get('leagues/{leagues}', ['as' => 'leagues.show', 'uses' => 'LeagueController@show']);

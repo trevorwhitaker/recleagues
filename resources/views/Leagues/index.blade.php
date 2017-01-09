@@ -75,7 +75,7 @@
   	@foreach($data['leagues'] as $league)
   	<tr>
       <td class="find-league-text">{{ $league->city }}</td>
-      <td class="find-league-text">{!! Html::linkRoute('leagues.show', $league->LeagueName, array($league->Id), array('class' => 'findLeagueNames')) !!} </td>
+      <td class="find-league-text">{!! Html::linkRoute('leagues.show', $league->LeagueName, array(rawurlencode($league->LeagueName) . '-' . $league->Id), array('class' => 'findLeagueNames')) !!} </td>
       <td class="find-league-text">{{ $league->type }}</td>
     </tr>
 	@endforeach

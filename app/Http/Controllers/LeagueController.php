@@ -34,6 +34,12 @@ class LeagueController extends Controller
         return view('Leagues.index')->withData($data);
     }
 
+    private function getIdByTitle($title)
+    {
+        $parts = explode('-', $title);
+        return end($parts);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -127,7 +133,8 @@ class LeagueController extends Controller
      */
     public function show($id)
     {
-        $league = League::find($id);
+        $num = $this->getIdByTitle($id);
+        $league = League::find($num);
         if ($league == null || !$league->validated)
         {
             Session::flash('error', 'The league does not exist.');
@@ -170,6 +177,10 @@ class LeagueController extends Controller
             return redirect('/');
         }
 
+        $oldEmail = $league->email;
+        $oldName = $league->person;
+        $oldLeagueName = $league->leaguename;
+
         $this->validate($request, array(
                'leaguename' => 'required|max:250',
                'city' => 'required|max:50',
@@ -196,7 +207,7 @@ class LeagueController extends Controller
         // send email here to validate with id field. Store the object and set flag to false. Change when link is clicked.
 
         $email_data = array(
-            'leagueName' => $league->leagueName,
+            'leagueName' => $league->leaguename,
             'city' => $league->city,
             'province' => $league->province,
             'sport' => $league->sport,
@@ -214,6 +225,31 @@ class LeagueController extends Controller
             {
               $message->to('trevor.whitaker@hotmail.com', 'Trevor Whitaker')
                       ->subject('League request from '. $league->person);
+            });
+
+        $notify_data = array(
+            'leagueName' => $league->leagueName,
+            'city' => $league->city,
+            'province' => $league->province,
+            'sport' => $league->sport,
+            'type' => $league->type,
+            'website' => $league->website,
+            'person' => $league->person,
+            'phone' => $league->phone,
+            'email' => $league->email,
+            'description' => $league->description
+        );
+
+        $notify_cred = array(
+            'oldEmail' => $oldEmail,
+            'oldName' => $oldName,
+            'oldLeagueName' => $oldLeagueName
+        );
+
+        Mail::send('Emails.notifyUpdate', $notify_data, function($message) use ($notify_cred)
+            {
+              $message->to($notify_cred['oldEmail'], $notify_cred['oldName'] ?? $notify_cred['oldLeagueName'])
+                      ->subject('Your league has been updated.');
             });
 
         Session::flash('success', 'The request has been sent for approval.');
@@ -276,23 +312,6 @@ class LeagueController extends Controller
         $league->authToken = $this->getRandomString(25);
         $league->save();
 
-        // send email here to validate with id field. Store the object and set flag to false. Change when link is clicked.
-
-        $email_data = array(
-            'leagueName' => $league->leagueName,
-            'city' => $league->city,
-            'province' => $league->province,
-            'sport' => $league->sport,
-            'type' => $league->type,
-            'website' => $league->website,
-            'person' => $league->person,
-            'phone' => $league->phone,
-            'email' => $league->email,
-            'description' => $league->description,
-            'authtoken' => $league->authToken,
-            'id' => $league->id,
-        );
-
         Session::flash('success', 'League was successfully updated!');
 
         return redirect()->action('PagesController@getIndex');
@@ -346,5 +365,46 @@ class LeagueController extends Controller
 
         Session::flash('success', 'The league has been denied.');
         return redirect('/');
+    }
+
+    public function adminAdd()
+    {
+        return view('Admin.create');
+    }
+
+    public function adminStore(Request $request)
+    {
+        $this->validate($request, array(
+               'leagueName' => 'required|max:250',
+               'city' => 'required|max:50',
+               'province' => 'required|max:50',
+               'sport' => 'required|max:50',
+               'type' => 'required',
+               'website' => 'max:250',
+               'person' => 'max:100',
+               'phone' => 'max:20',
+               'email' => 'required|email|max:100',
+               'description' => 'max:250'
+            ));
+
+        $league = new League;
+        $league->leagueName = $request->leagueName;
+        $league->city = $request->city;
+        $league->province = $request->province;
+        $league->sport = $request->sport;
+        $league->type = join(", ", $request->type);
+        $league->website = $request->website;
+        $league->person = $request->person;
+        $league->phone = $request->phone;
+        $league->email = $request->email;
+        $league->description = $request->description;
+        $league->validated = 1;
+        $league->authToken = $this->getRandomString(25);
+
+        $league->save();
+
+        Session::flash('success', 'The league has been added.');
+
+        return redirect()->action('PagesController@getIndex');
     }
 }
