@@ -6,7 +6,7 @@
 
 <div class="row">
 	<div>
-		<p class="default-text"> Find A League For You</p>
+		<p class="default-text"> Find A League</p>
 			{!! Form::open(array('route' => 'leagues.getLeagues', 'data-parsley-validate' => '')) !!}
 			<table class="col-md-4 col-md-offset-4">
 				<tr>
@@ -22,7 +22,7 @@
 						'Ontario' => 'Ontario',
 						'Prince Edward Island' => 'Prince Edward Island',
 						'Quebec' => 'Quebec',
-						'Saskatchewan' => 'Saskatchewan'], null, ['placeholder' => '', 'class' => 'form-control findLeagueFilters', 'required' => '']) }}
+						'Saskatchewan' => 'Saskatchewan'], $data['province'], ['placeholder' => '', 'class' => 'form-control findLeagueFilters', 'required' => '']) }}
 					</td>
 					<td class="findLeagueTD">
 						{{ Form::label('sport', 'Sport', array('class' => 'findLeagueFilters')) }}
@@ -31,16 +31,21 @@
 						'Fast-Pitch' => 'Fast-Pitch',
 						'Football' => 'Football',
 						'Hockey' => 'Hockey',
+						'Ball Hockey' => 'Ball Hockey',
+						'Ultimate Frisbee' => 'Ultimate Frisbee',
 						'Slo-Pitch' => 'Slo-Pitch',
 						'Soccer' => 'Soccer', 
-						'VolleyBall' => 'VolleyBall'], null, ['placeholder' => '', 'class' => 'form-control findLeagueFilters', 'required' => '']) }}
+						'VolleyBall' => 'VolleyBall',
+						'Baseketball' => 'Basketball'], $data['sport'], ['placeholder' => '', 'class' => 'form-control findLeagueFilters', 'required' => '']) }}
 					</td>
 					<td class="findLeagueTD">
 						{{ Form::label('type', 'Gender', array('class' => 'findLeagueFilters')) }}
 						{{ Form::select('type', [
 						'Male' => 'Male',
 						'Female' => 'Female',
-						'Co-op' => 'Co-op'], null, ['placeholder' => '', 'class' => 'form-control findLeagueFilters', 'required' => '']) }}
+						'Coed' => 'Coed',
+						'Youth - Boys' => 'Youth - Boys',
+						'Youth - Girls' => 'Youth - Girls'], $data['type'], ['placeholder' => '', 'class' => 'form-control findLeagueFilters', 'required' => '']) }}
 					</td>
 					<td class="findLeagueTD">
 					{{ Form::submit('Search', array('class' => 'btn btn-primary center-block', 'id' => 'findLeaguebutton')) }}
@@ -53,16 +58,29 @@
 </div>
 
 <br>
-@if($leagues->isEmpty())
+@if($data['leagues']->isEmpty())
 	<p class="default-text">
 		No leagues were found with these parameters.
 	</p>
 @else
-	@foreach($leagues as $league)
-	<p style="text-align: center">
-		{!! Html::linkRoute('leagues.show', $league->LeagueName, array($league->Id), array('class' => 'findLeagueNames')) !!}
-	</p>
+<table class="table table-striped" width="100%">
+  <thead class="thead-inverse">
+    <tr>
+      <th class="find-league-text" width="33.33%">City</th>
+      <th class="find-league-text" width="33.33%">League Name</th>
+      <th class="find-league-text" width="33.33%">Gender</th>
+    </tr>
+  </thead>
+  <tbody>
+  	@foreach($data['leagues'] as $league)
+  	<tr>
+      <td class="find-league-text">{{ $league->city }}</td>
+      <td class="find-league-text">{!! Html::linkRoute('leagues.show', $league->LeagueName, array($league->Id), array('class' => 'findLeagueNames')) !!} </td>
+      <td class="find-league-text">{{ $league->type }}</td>
+    </tr>
 	@endforeach
+  </tbody>
+</table>
 @endif
 
 @endsection

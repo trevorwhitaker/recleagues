@@ -25,9 +25,13 @@ class LeagueController extends Controller
      */
     public function index()
     {
-        $leagues = League::select(array('Id', 'LeagueName'))->where('validated', true)->get();
-
-        return view('Leagues.index')->withLeagues($leagues);
+        $leagues = League::select(array('Id', 'LeagueName', 'city', 'type'))->where('validated', true)->orderBy('City', 'ASC')->get();
+        $data = array(
+            'leagues' => $leagues,
+            'province' => null,
+            'sport' => null,
+            'type' => null);
+        return view('Leagues.index')->withData($data);
     }
 
     /**
@@ -40,7 +44,7 @@ class LeagueController extends Controller
         return view('Leagues.create');
     }
 
-    public function getRandomString($length) {
+    private function getRandomString($length) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $string = '';
 
@@ -63,10 +67,10 @@ class LeagueController extends Controller
                'city' => 'required|max:50',
                'province' => 'required|max:50',
                'sport' => 'required|max:50',
-               'type' => 'required|max:10',
-               'website' => 'url|max:250',
-               'person' => 'required|max:100',
-               'phone' => 'required|max:20',
+               'type' => 'required',
+               'website' => 'max:250',
+               'person' => 'max:100',
+               'phone' => 'max:20',
                'email' => 'required|email|max:100',
                'description' => 'max:250',
                'g-recaptcha-response' => 'required|captcha'
@@ -77,7 +81,7 @@ class LeagueController extends Controller
         $league->city = $request->city;
         $league->province = $request->province;
         $league->sport = $request->sport;
-        $league->type = $request->type;
+        $league->type = join(", ", $request->type);
         $league->website = $request->website;
         $league->person = $request->person;
         $league->phone = $request->phone;
@@ -104,7 +108,7 @@ class LeagueController extends Controller
             'id' => $league->id,
         );
 
-        Mail::send('emails.request', $email_data, function($message) use ($league)
+        Mail::send('Emails.request', $email_data, function($message) use ($league)
             {
               $message->to('trevor.whitaker@hotmail.com', 'Trevor Whitaker')
                       ->subject('League request from '. $league->person);
@@ -140,7 +144,14 @@ class LeagueController extends Controller
      */
     public function edit($id)
     {
-        //
+        $league = League::find($id);
+        if ($league == null || !$league->validated)
+        {
+            Session::flash('error', 'The league does not exist.');
+            return redirect('/');
+        }
+
+        return view('Leagues.editLeague')->withLeague($league);
     }
 
     /**
@@ -152,7 +163,74 @@ class LeagueController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $league = League::find($id);
+        if ($league == null || !$league->validated)
+        {
+            Session::flash('error', 'The league does not exist.');
+            return redirect('/');
+        }
+
+        $this->validate($request, array(
+               'leaguename' => 'required|max:250',
+               'city' => 'required|max:50',
+               'province' => 'required|max:50',
+               'sport' => 'required|max:50',
+               'type' => 'required',
+               'website' => 'url|max:250',
+               'person' => 'max:100',
+               'phone' => 'max:20',
+               'email' => 'required|email|max:100',
+               'description' => 'max:250',
+               'g-recaptcha-response' => 'required|captcha'
+            ));
+
+        $league->fill($request->all());
+        if (isset($request->type))
+        {
+            $league->type = join(", ", $request->type);
+        }
+        $league->validated = 0;
+        $league->authToken = $this->getRandomString(25);
+        $league->save();
+
+        // send email here to validate with id field. Store the object and set flag to false. Change when link is clicked.
+
+        $email_data = array(
+            'leagueName' => $league->leagueName,
+            'city' => $league->city,
+            'province' => $league->province,
+            'sport' => $league->sport,
+            'type' => $league->type,
+            'website' => $league->website,
+            'person' => $league->person,
+            'phone' => $league->phone,
+            'email' => $league->email,
+            'description' => $league->description,
+            'authtoken' => $league->authToken,
+            'id' => $league->id,
+        );
+
+        Mail::send('Emails.request', $email_data, function($message) use ($league)
+            {
+              $message->to('trevor.whitaker@hotmail.com', 'Trevor Whitaker')
+                      ->subject('League request from '. $league->person);
+            });
+
+        Session::flash('success', 'The request has been sent for approval.');
+
+        return redirect()->action('PagesController@getIndex');
+    }
+
+    public function adminEdit($id)
+    {
+        $league = League::find($id);
+        if ($league == null || !$league->validated)
+        {
+            Session::flash('error', 'The league does not exist.');
+            return redirect('/');
+        }
+
+        return view('Admin.editLeague')->withLeague($league);
     }
 
     /**
@@ -163,14 +241,73 @@ class LeagueController extends Controller
      */
     public function destroy($id)
     {
-        //...
+        League::destory($id);
+    }
+
+    public function adminUpdate(Request $request, $id)
+    {
+        $league = League::find($id);
+        if ($league == null || !$league->validated)
+        {
+            Session::flash('error', 'The league does not exist.');
+            return redirect('/');
+        }
+
+        $this->validate($request, array(
+               'leaguename' => 'required|max:250',
+               'city' => 'required|max:50',
+               'province' => 'required|max:50',
+               'sport' => 'required|max:50',
+               'type' => 'required',
+               'website' => 'url|max:250',
+               'person' => 'max:100',
+               'phone' => 'max:20',
+               'email' => 'required|email|max:100',
+               'description' => 'max:250',
+               'g-recaptcha-response' => 'required|captcha'
+            ));
+
+        $league->fill($request->all());
+        if (isset($request->type))
+        {
+            $league->type = join(", ", $request->type);
+        }
+        $league->validated = 1;
+        $league->authToken = $this->getRandomString(25);
+        $league->save();
+
+        // send email here to validate with id field. Store the object and set flag to false. Change when link is clicked.
+
+        $email_data = array(
+            'leagueName' => $league->leagueName,
+            'city' => $league->city,
+            'province' => $league->province,
+            'sport' => $league->sport,
+            'type' => $league->type,
+            'website' => $league->website,
+            'person' => $league->person,
+            'phone' => $league->phone,
+            'email' => $league->email,
+            'description' => $league->description,
+            'authtoken' => $league->authToken,
+            'id' => $league->id,
+        );
+
+        Session::flash('success', 'League was successfully updated!');
+
+        return redirect()->action('PagesController@getIndex');
     }
 
     public function filter($province, $sport, $type)
     {
-        $leagues = League::select(array('Id', 'LeagueName'))->where(array('Province' => $province, 'Sport' => $sport, 'Type' => $type, 'validated' => true))->get();
+        $leagues = League::select(array('Id', 'LeagueName', 'city', 'type'))->where(array('Province' => $province, 'Sport' => $sport, 'validated' => true))->where('Type', 'LIKE', '%'.$type.'%')->get();
+        $data = array(
+            'leagues' => $leagues,
+            'province' => $province,
+            'sport' => $sport,
+            'type' => $type);
 
-        return view('Leagues.index')->withLeagues($leagues);
+        return view('Leagues.index')->withData($data);
     }
 
     public function getLeagues()
@@ -182,8 +319,7 @@ class LeagueController extends Controller
     public function confirmLeague($id, $authToken)
     {
         $league = League::find($id);
-
-        if ($league == null || $league->authtoken != $authToken || $league->validated)
+        if ($league == null || $league->authToken != $authToken || $league->validated)
         {
             Session::flash('error', 'The league does not exist.');
             return redirect('/');
@@ -200,7 +336,7 @@ class LeagueController extends Controller
     {
         $league = League::find($id);
 
-        if ($league == null || $league->authtoken != $authToken || $league->validated)
+        if ($league == null || $league->authToken != $authToken || $league->validated)
         {
             Session::flash('error', 'The league does not exist.');
             return redirect('/');

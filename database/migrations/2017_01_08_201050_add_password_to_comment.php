@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddTimeColumns extends Migration
+class AddPasswordToComment extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,8 @@ class AddTimeColumns extends Migration
      */
     public function up()
     {
-        Schema::table('leagues', function ($table) {
-            $table->timestamps();
+        Schema::table('comments', function ($table) {
+            $table->string('password');
         });
     }
 
@@ -24,8 +24,8 @@ class AddTimeColumns extends Migration
      */
     public function down()
     {
-        Schema::table('leagues', function ($table) {
-            $table->dropTimestamps();
+        Schema::table('comments', function ($table) {
+            $table->dropColumn('password');
         });
     }
 }

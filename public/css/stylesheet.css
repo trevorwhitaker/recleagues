@@ -2,19 +2,60 @@ body {
     background-image: url("../Images/Backgrounds/Background low-res.jpg");
 }
 #app  {
-	width: 80%;
+	width: 82.5%;
 	margin: 0 auto;
-	background-color: white;
+	background-color: #F5F5DC;
 	min-height: 100vh;
+	display: block;
 }
 
 #main-title-background {
-	background-color: black;
-	height:175px;
+	background-color: white;
+	height: 100%;
 	width: 100%;
 	overflow: auto;
-    display: inline-block;
-    vertical-align: top;
+    display: block;
+}
+
+.twitter_feed {
+	width: 35%;
+	float: right;
+}
+
+.main-page {
+	float: left;
+	margin-left:10px;
+	width: 60%;
+}
+
+.thosm {
+  font-family: Oswald, sans-serif;
+  text-align: center;
+  color: #333333;
+  font-weight: 300;
+  line-height: 1em;
+}
+
+.thosm_no_align {
+  font-family: Oswald, sans-serif;
+  color: #333333;
+  font-weight: 300;
+  line-height: 1em;
+}
+
+.gender-check {
+	margin-left: 31% !important;
+}
+
+.gender-text {
+	font-weight: 700;
+	vertical-align: text-bottom;
+}
+
+#main-title-background img {
+    width: 70%;
+    display: block;
+    margin: 10px auto;
 }
 
 #main-title {
@@ -29,6 +70,13 @@ body {
 .default-text {
 	color: blue;
 	font-size: 30px;
+	font-family: 'Signika', serif;
+	text-align: center;
+}
+
+.find-league-text {
+	color: blue;
+	font-size: 20px;
 	font-family: 'Signika', serif;
 	text-align: center;
 }
@@ -54,10 +102,15 @@ body {
 }
 .nav li {
 	transition: all 0.3s ease-in-out;
-	width: 20%;
+	width: 16.66%;
 	text-align: center;
 	border-right: 2px solid blue;
 	border-left: 2px solid blue;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: white !important;
+    font-size: 22px;
 }
 
 .nav li:hover {
@@ -66,6 +119,7 @@ body {
 
 .nav .active a{ 
 	background: #C0C0C0 !important;
+	color: yellow !important;
 }
 
 .form-control {
@@ -99,6 +153,7 @@ body {
 .leaguePageText {
 	font-family: Arial;
 	text-align: center;
+	font-size: 24 !important;
 }
 
 .findLeagueNames {
@@ -114,4 +169,117 @@ body {
 	margin-bottom: 3%;
 	display: inline-block;
 	align-content: center;
+}
+
+.table-bordered {
+	width: 50% !important;
+	text-align: center;
+}
+
+.league-table-text {
+	color: black;
+	font-size: 20px;
+	font-family: 'Signika', serif;
+	text-align: center;
+}
+
+.league-page-name {
+	color: blue;
+	font-size: 50px;
+	font-family: 'Signika', serif;
+	text-align: center;
+}
+
+#slideshow { 
+    position: relative; 
+    width: 240px; 
+    height: 240px; 
+    padding: 100px; 
+}
+
+#slideshow img {
+	display: block;
+	margin: 0 auto;
+}
+
+#slideshow div { 
+    position: absolute; 
+    top: 10px; 
+    left: 10px; 
+    right: 10px; 
+    bottom: 10px; 
+}
+
+.carousel .item {
+	background: #F5F5DC !important;
+}
+
+.carousel {
+	margin-top: 100px;
+}
+
+.inner-item {
+    text-align: center;
+    height: 200px;
+}
+
+.inner-item img {
+    margin: 0 auto;
+}
+
+.league-page-background {
+    position: relative;
+    overflow: hidden;
+    min-height: 100%;
+}
+
+.league-page-background:after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.2;
+}
+
+.league-page-hockey:after {
+	background-image: url('../Images/Backgrounds/hockey.PNG');
+}
+
+.league-page-baseball:after {
+	background-image: url('../Images/Backgrounds/baseball.PNG');
+}
+
+.league-page-basketball:after {
+	background-image: url('../Images/Backgrounds/basketball.PNG');
+}
+
+.league-page-fast-pitch:after {
+	background-image: url('../Images/Backgrounds/fast-pitch.PNG');
+}
+
+.league-page-football:after {
+	background-image: url('../Images/Backgrounds/football.PNG');
+}
+
+.league-page-ultimate-frisbee:after {
+	background-image: url('../Images/Backgrounds/ultimate-frisbee.PNG');
+}
+
+.league-page-slo-pitch:after {
+	background-image: url('../Images/Backgrounds/slo-pitch.PNG');
+}
+
+.league-page-soccer:after {
+	background-image: url('../Images/Backgrounds/soccer.PNG');
+}
+
+.league-page-volleyball:after {
+	background-image: url('../Images/Backgrounds/volleyball.PNG');
+}
+
+.league-page-ball-hocket:after {
+	background-image: url('../Images/Backgrounds/hockey.PNG');
 }
