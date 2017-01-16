@@ -23,7 +23,7 @@
 		@include('Partials._nav')
 
 
-		@include('partials._messages')
+		@include('Partials._messages')
 
 
 		@yield('content')
