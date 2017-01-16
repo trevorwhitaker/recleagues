@@ -9,6 +9,7 @@
         "laravel/framework": "5.2.*",
         "laravelcollective/html": "^5.2",
         "guzzlehttp/guzzle": "~4.0",
+        "mews/captcha": "~2.0",
         "anhskohbo/no-captcha": "2.*",
         "thujohn/twitter": "~2.0",
         "doctrine/dbal": "v2.4.2"
