@@ -3,7 +3,7 @@
 @section('title', ' | FAQ')
 
 @section('content')
-<div style="margin-right: 5px; margin-left: 50px;">
+<div style="margin-right: 15px; margin-left: 15px;">
 	<p class="default-text"><a href="/FAQ#what-is-recreational-leagues">What is Recreational Leagues about and are there any costs?</a></p>
 	<p class="default-text"><a href="/FAQ#provide-links">Do you provide links to team websites?</a></p>
 	<p class="default-text"><a href="/FAQ#help-me-find-a-league">Can you help me find a team to play for?</a></p>
