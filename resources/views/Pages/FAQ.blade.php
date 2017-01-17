@@ -3,6 +3,7 @@
 @section('title', ' | FAQ')
 
 @section('content')
+<div style="margin-right: 5px; margin-left: 50px;">
 	<p class="default-text"><a href="/FAQ#what-is-recreational-leagues">What is Recreational Leagues about and are there any costs?</a></p>
 	<p class="default-text"><a href="/FAQ#provide-links">Do you provide links to team websites?</a></p>
 	<p class="default-text"><a href="/FAQ#help-me-find-a-league">Can you help me find a team to play for?</a></p>
@@ -34,7 +35,7 @@
 
 	<p class="default-text" style="font-weight: bold; font-size: 40px">Can I change the details of a league I already added?</p>
 
-	<p class="default-text">Yes you can. Find your league and on the page there will be a link to submit a request to change your league details. Simply click the link and update the information. Once you submit your changes they will be reviewed. When you edit a league your league will be temporarily hidden until the changes are approved.</p>
+	<p class="default-text">Yes you can. Find your league and on the page there will be a link to submit a request to change your league details. Simply click the link and update the information. Once you submit your changes they will be reviewed and an email will be sent to the current email address of that league. When you edit a league your league will be temporarily hidden until the changes are approved.</p>
 
 	<a name="how-to-use-bulletin-board"></a>
 	<hr>
@@ -44,4 +45,5 @@
 	<p class="default-text">This is not a discussion forum. It is designed to connect you with interested people. You can post a message on the bulletin board and it can be replied to. Your email is hidden. The reply and any further discussions with you are not shown. Topics are unlimited and can include looking for players & teams or announcing a tournament. A search feature is also provided.</p>
 
 	<p class="default-text">When an item is posted, @Rec__Leagues will automatically tweet the topic and city with a link to the message.</p>
+</div>
 @endsection

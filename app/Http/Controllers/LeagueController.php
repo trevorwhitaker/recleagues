@@ -116,7 +116,7 @@ class LeagueController extends Controller
 
         Mail::send('Emails.request', $email_data, function($message) use ($league)
             {
-              $message->to('trevor.whitaker@hotmail.com', 'Trevor Whitaker')
+              $message->to('recreationalleagues@gmail.com', 'Bob Whitaker')
                       ->subject('League request from '. $league->person);
             });
 
@@ -223,7 +223,7 @@ class LeagueController extends Controller
 
         Mail::send('Emails.request', $email_data, function($message) use ($league)
             {
-              $message->to('trevor.whitaker@hotmail.com', 'Trevor Whitaker')
+              $message->to('recreationalleagues@gmail.com', 'Bob Whitaker')
                       ->subject('League request from '. $league->person);
             });
 

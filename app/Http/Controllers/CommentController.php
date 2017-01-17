@@ -99,11 +99,11 @@ class CommentController extends Controller
 
         Mail::send('Emails.createMessage', $email_data, function($message) use ($comment)
         {
-            $message->to('trevor.whitaker@hotmail.com', 'Trevor Whitaker')
+            $message->to('recreationalleagues@gmail.com', 'Bob Whitaker')
                 ->subject('Message request from '. $comment->name);
         });
 
-        Twitter::postTweet(array('status' => 'New Message posted on the bulletin board! Topic: ' . $comment->subject . ' www.recretionalleagues.ca/messages#' . $comment->id, 'format' => 'json'));
+        Twitter::postTweet(array('status' => 'New Message posted on the bulletin board! City: ' $comment->city . ' Topic: ' . $comment->subject . ' www.recretionalleagues.ca/messages#' . $comment->id, 'format' => 'json'));
 
         Session::flash('success', 'Your message has added.');
 

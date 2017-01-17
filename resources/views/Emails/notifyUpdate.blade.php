@@ -4,7 +4,7 @@
 </div>
 <div style = "padding:20px;">
 	<p style = "padding-top:20px;">
-		Your legue has been changed. If this wasn't you please notify us.
+		Your league has been changed. If this wasn't you please notify us.
 	</p>
 
 
