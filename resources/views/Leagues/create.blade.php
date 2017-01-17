@@ -11,7 +11,7 @@
 <p class="default-text"> If your league is already in our directory and you want to change the details, please check out our <a href="/FAQ/#edit-a-league">FAQ</a> seciton.</p>
 
 <div class="row">
-	<div class="col-md-2 col-md-offset-5">
+	<div class="col-md-4 col-md-offset-4">
 		{!! Form::open(array('route' => 'leagues.store', 'data-parsley-validate' => '')) !!}
 			{{ Form::label('leagueName', 'League Name', array('class' => 'addLeagueText')) }}
 			{{ Form::text('leagueName', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '250')) }}

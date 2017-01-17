@@ -6,7 +6,7 @@
 
 <p class="default-text">Have a question or a request?</p>
 <div class="row">
-	<div class="col-md-2 col-md-offset-5">
+	<div class="col-md-4 col-md-offset-4">
 		{!! Form::open(array('route' => 'pages.sendContact', 'data-parsley-validate' => '')) !!}
 			{{ Form::label('email', 'Return Email Address', array('class' => 'addLeagueText')) }}
 			{{ Form::text('email', null, array('class' => 'form-control', "placeholder" => "", 'data-parsley-type' => 'email', 'required' => '', 'maxlength' => '100')) }}

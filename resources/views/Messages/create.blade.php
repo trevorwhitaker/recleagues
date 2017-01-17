@@ -9,7 +9,7 @@
 @section('content')
 
 <div class="row">
-	<div class="col-md-2 col-md-offset-5">
+	<div class="col-md-4 col-md-offset-4">
 		{!! Form::open(array('route' => 'comments.store', 'data-parsley-validate' => '')) !!}
 			{{ Form::label('name', 'Name', array('class' => 'addLeagueText')) }}
 			{{ Form::text('name', null, array('class' => 'form-control', 'maxlength' => '100')) }}

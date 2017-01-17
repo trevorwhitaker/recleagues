@@ -8,7 +8,7 @@
 	<div>
 		<p class="default-text"> Find A League</p>
 			{!! Form::open(array('route' => 'leagues.getLeagues', 'data-parsley-validate' => '')) !!}
-			<table class="col-md-4 col-md-offset-4">
+			<table class="col-md-6 col-md-offset-3">
 				<tr>
 					<td class="findLeagueTD">
 						{{ Form::label('province', 'Province', array('class' => 'findLeagueFilters', 'required' => '')) }}
