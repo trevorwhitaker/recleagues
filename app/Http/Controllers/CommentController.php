@@ -103,7 +103,7 @@ class CommentController extends Controller
                 ->subject('Message request from '. $comment->name);
         });
 
-        Twitter::postTweet(array('status' => 'New Message posted on the bulletin board! City: ' $comment->city . ' Topic: ' . $comment->subject . ' www.recretionalleagues.ca/messages#' . $comment->id, 'format' => 'json'));
+        Twitter::postTweet(array('status' => 'New Message posted on the bulletin board! City: ' . $comment->city . ' Topic: ' . $comment->subject . ' www.recretionalleagues.ca/messages#' . $comment->id, 'format' => 'json'));
 
         Session::flash('success', 'Your message has added.');
 
