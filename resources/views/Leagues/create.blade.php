@@ -70,7 +70,7 @@
 			{{ Form::text('email', null, array('class' => 'form-control', 'type' => 'email', 'required' => '', 'maxlength' => '100')) }}
 
 			<br>
-			<p style="font-weight: 700; font-size: 31px"> Optional Fields </p>
+			<p style="font-weight: 700; font-size: 31px; text-align: center;"> Optional Fields </p>
 			<br>
 
 			{{ Form::label('website', 'Website', array('class' => 'addLeagueText')) }}
