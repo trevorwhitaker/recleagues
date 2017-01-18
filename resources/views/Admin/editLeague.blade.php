@@ -9,7 +9,7 @@
 @section('content')
 
 <div class="row">
-	<div class="col-md-2 col-md-offset-5">
+	<div class="col-md-4 col-md-offset-4">
 		{!! Form::open(['route' => ['leagues.destroy', $league->id], 'method' => 'DELETE']) !!}
 		{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
 		{!! Form::close() !!}

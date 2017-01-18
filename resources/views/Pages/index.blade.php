@@ -52,7 +52,7 @@
 
 	<a class="twitter-follow-button" href="https://twitter.com/rec__leagues"> Follow @rec__leagues</a>
 
-	<a class="twitter-timeline" data-height="550" href="https://twitter.com/rec__leagues">Tweets by rec__leagues</a>
+	<a class="twitter-timeline" data-height="600" href="https://twitter.com/rec__leagues">Tweets by rec__leagues</a>
 	<script async src="//platform.twitter.com/widgets.js" data-tweet-limit=5 charset="utf-8"></script>
 
 </div>

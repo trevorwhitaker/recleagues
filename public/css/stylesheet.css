@@ -3,7 +3,8 @@ body {
 }
 #app  {
 	width: 82.5%;
-	margin: 0 auto;
+	margin: 0 auto !important;
+	padding: 0 !important;
 	background-color: #F5F5DC;
 	min-height: 100vh;
 	position: relative;
@@ -20,6 +21,7 @@ body {
 .twitter_feed {
 	width: 35%;
 	float: right;
+	padding-right: 10px;
 }
 
 .main-page {

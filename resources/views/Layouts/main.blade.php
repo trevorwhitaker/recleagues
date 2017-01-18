@@ -5,7 +5,7 @@
 </head>
 
 <body>
-	<div id="app">
+	<div id="app" class="container">
 		<div id="main-title-background" style="overflow: hidden; display: flex;">
 			<div class="" style="max-width: 18%; max-height: 18%; margin-top: 5px">
 				<img src ="../../../../../../../../Images/MapleLeaf.png">
