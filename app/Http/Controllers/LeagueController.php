@@ -258,7 +258,8 @@ class LeagueController extends Controller
 
     public function adminEdit($id)
     {
-        $league = League::find($id);
+        $num = $this->getIdByTitle($id);
+        $league = League::find($num);
         if ($league == null || !$league->validated)
         {
             Session::flash('error', 'The league does not exist.');
@@ -298,8 +299,7 @@ class LeagueController extends Controller
                'person' => 'max:100',
                'phone' => 'max:20',
                'email' => 'required|email|max:100',
-               'description' => 'max:250',
-               'g-recaptcha-response' => 'required|captcha'
+               'description' => 'max:250'
             ));
 
         $league->fill($request->all());

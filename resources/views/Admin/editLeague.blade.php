@@ -76,11 +76,7 @@
 			{{ Form::text('phone', $league->phone, array('class' => 'form-control', 'maxlength' => '20', 'pattern' => "^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$", 'data-parsley-error-message' => "Please enter in the format XXX-XXX-XXXX")) }}
 
 			{{ Form::label('description', 'League Description', array('class' => 'addLeagueText')) }}
-			{{ Form::textarea('description', $league->description, array('class' => 'form-control', 'style' => 'resize: none;', 'maxlength' => '100')) }}
-
-			<div class = "captcha_container">
-				{!! app('captcha')->display(); !!}
-			</div>
+			{{ Form::textarea('description', $league->description, array('class' => 'form-control', 'style' => 'resize: none;', 'maxlength' => '250')) }}
 
 			{{ Form::submit('Submit Change', array('class' => 'btn btn-primary center-block')) }}
 

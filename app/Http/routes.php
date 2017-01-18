@@ -36,6 +36,8 @@ Route::get('leagues/adminadd', ['as' => 'leagues.adminAdd', 'uses' => 'LeagueCon
 
 Route::post('leagues/adminadd', ['as' => 'leagues.adminStore', 'uses' => 'LeagueController@adminStore'])->middleware('auth.basic');
 
+Route::get('leagues/{league}/adminedit', ['as' => 'leagues.adminEdit', 'uses' => 'LeagueController@adminEdit'])->middleware('auth.basic');
+
 Route::post('leagues/{leagues}', ['as' => 'leagues.update', 'uses' => 'LeagueController@update']);
 
 Route::get('leagues/{leagues}', ['as' => 'leagues.show', 'uses' => 'LeagueController@show']);
