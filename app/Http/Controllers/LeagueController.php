@@ -25,9 +25,8 @@ class LeagueController extends Controller
      */
     public function index()
     {
-        $leagues = League::select(array('Id', 'LeagueName', 'city', 'type'))->where('validated', true)->orderBy('City', 'ASC')->get();
         $data = array(
-            'leagues' => $leagues,
+            'fromMain' => true,
             'province' => null,
             'sport' => null,
             'type' => null);
@@ -324,7 +323,8 @@ class LeagueController extends Controller
             'leagues' => $leagues,
             'province' => $province,
             'sport' => $sport,
-            'type' => $type);
+            'type' => $type,
+            'fromMain' => false);
 
         return view('Leagues.index')->withData($data);
     }

@@ -40,9 +40,10 @@
 			{{ Form::select('sport', [
 			'Baseball' => 'Baseball',
 			'Fast-Pitch' => 'Fast-Pitch',
-			'Football' => 'Football',
+			'Flag Football' => 'Flag Football',
 			'Hockey' => 'Hockey',
 			'Slo-Pitch' => 'Slo-Pitch',
+			'Ultimate Frisbee' => 'Ultimate Frisbee',
 			'Soccer' => 'Soccer', 
 			'Volleyball' => 'Volleyball',
 			'Basketball' => 'Basketball',

@@ -29,7 +29,7 @@
 						{{ Form::select('sport', [
 						'Baseball' => 'Baseball',
 						'Fast-Pitch' => 'Fast-Pitch',
-						'Football' => 'Football',
+						'Flag Football' => 'Flag Football',
 						'Hockey' => 'Hockey',
 						'Ball Hockey' => 'Ball Hockey',
 						'Ultimate Frisbee' => 'Ultimate Frisbee',
@@ -58,7 +58,11 @@
 </div>
 
 <br>
-@if($data['leagues']->isEmpty())
+@if($data['fromMain'])
+	<p class="default-text">
+		Fill in the fields above to find a league for you
+	</p>
+@elseif($data['leagues']->isEmpty())
 	<p class="default-text">
 		No leagues were found with these parameters.
 	</p>
