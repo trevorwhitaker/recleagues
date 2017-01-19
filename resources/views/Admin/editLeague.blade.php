@@ -41,6 +41,7 @@
 			'Flag Football' => 'Flag Football',
 			'Hockey' => 'Hockey',
 			'Ultimate Frisbee' => 'Ultimate Frisbee',
+			'Ball Hockey' => 'Ball Hockey',
 			'Slo-Pitch' => 'Slo-Pitch',
 			'Soccer' => 'Soccer', 
 			'Volleyball' => 'Volleyball',
