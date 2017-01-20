@@ -35,7 +35,7 @@
 
 	<p class="default-text" style="font-weight: bold; font-size: 40px">Can I change the details of a league I already added?</p>
 
-	<p class="default-text">Yes you can. Find your league and on the page there will be a link to submit a request to change your league details. Simply click the link and update the information. Once you submit your changes they will be reviewed and an email will be sent to the current email address of that league. When you edit a league your league will be temporarily hidden until the changes are approved.</p>
+	<p class="default-text">Yes you can. Find your league and on the bottom of the page there will be a link to submit a request to change your league details. Simply click the link and update the information. Once you submit your changes they will be reviewed and an email will be sent to the current email address of that league. When you edit a league your league will be temporarily hidden until the changes are approved.</p>
 
 	<a name="how-to-use-bulletin-board"></a>
 	<hr>
