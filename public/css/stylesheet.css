@@ -251,7 +251,7 @@ body {
 }
 
 .league-page-baseball:after {
-	background-image: url('../Images/Backgrounds/baseball.PNG');
+	background-image: url('../Images/Backgrounds/baseball.png');
 }
 
 .league-page-basketball:after {
@@ -259,23 +259,23 @@ body {
 }
 
 .league-page-fast-pitch:after {
-	background-image: url('../Images/Backgrounds/fast-pitch.PNG');
+	background-image: url('../Images/Backgrounds/fast-pitch.png');
 }
 
 .league-page-football:after {
-	background-image: url('../Images/Backgrounds/football.PNG');
+	background-image: url('../Images/Backgrounds/flag-football.png');
 }
 
 .league-page-ultimate-frisbee:after {
-	background-image: url('../Images/Backgrounds/ultimate-frisbee.PNG');
+	background-image: url('../Images/Backgrounds/ultimate-frisbee.png');
 }
 
 .league-page-slo-pitch:after {
-	background-image: url('../Images/Backgrounds/slo-pitch.PNG');
+	background-image: url('../Images/Backgrounds/slo-pitch.png');
 }
 
 .league-page-soccer:after {
-	background-image: url('../Images/Backgrounds/soccer.PNG');
+	background-image: url('../Images/Backgrounds/soccer.png');
 }
 
 .league-page-volleyball:after {

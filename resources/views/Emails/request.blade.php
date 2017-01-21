@@ -1,6 +1,6 @@
 <body>
 <div style = "background: #333 !important; padding:10px 20px;">
-	<h2 style = "color: #fff !important;">You have received a request from recreational leagues!</h2>
+	<h2 style = "color: #fff !important;">You have received an add league request from recreational leagues!</h2>
 </div>
 <div style = "padding:20px;">
 	<div style = "border: 1px solid #333; padding:20px;">
@@ -17,9 +17,9 @@
 	</div>
 
 	<div>
-	<p>localhost:8000/leagues/confirm/{{$id}}/{{$authtoken}}</p>
+	<a href="recreationalleagues.ca/leagues/confirm/{{$id}}/{{$authtoken}}">Click here to accept</a>
 	<hr>
-	<p>localhost:8000/leagues/deny/{{$id}}/{{$authtoken}}</p>
+	<a href="recreationalleagues.ca/leagues/deny/{{$id}}/{{$authtoken}}">Click here to deny</a>
 	</div>
 	<p style = "padding-top:20px;">
 		This is an automatically generated notification. Do not Reply to this email.

@@ -8,6 +8,8 @@ use App\Http\Requests;
 
 use App\League;
 
+use App\City;
+
 use Session;
 
 use Input;
@@ -69,8 +71,7 @@ class LeagueController extends Controller
     {
         $this->validate($request, array(
                'leagueName' => 'required|max:250',
-               'city' => 'required|max:50',
-               'province' => 'required|max:50',
+               'province' => 'required',
                'sport' => 'required|max:50',
                'type' => 'required',
                'website' => 'max:250',
@@ -81,6 +82,11 @@ class LeagueController extends Controller
                'g-recaptcha-response' => 'required|captcha'
             ));
 
+
+        if (City::where([['province', '=', $request->province], ['city', '=', $request->city]])->get() == null)
+        {
+            return Redirect::back()->withInput(Input::all());
+        }
         $league = new League;
         $league->leagueName = $request->leagueName;
         $league->city = $request->city;
@@ -92,7 +98,7 @@ class LeagueController extends Controller
         $league->phone = $request->phone;
         $league->email = $request->email;
         $league->description = $request->description;
-        $league->authToken = $this->getRandomString(25);
+        $league->authToken = 'new' . $this->getRandomString(25);
 
         $league->save();
 
@@ -116,7 +122,7 @@ class LeagueController extends Controller
         Mail::send('Emails.request', $email_data, function($message) use ($league)
             {
               $message->to('recreationalleagues@gmail.com', 'Bob Whitaker')
-                      ->subject('League request from '. $league->person);
+                      ->subject('Add League request from '. $league->leagueName);
             });
 
         Session::flash('success', 'The request has been sent for approval.');
@@ -200,7 +206,7 @@ class LeagueController extends Controller
             $league->type = join(", ", $request->type);
         }
         $league->validated = 0;
-        $league->authToken = $this->getRandomString(25);
+        $league->authToken = 'old' . $this->getRandomString(25);
         $league->save();
 
         // send email here to validate with id field. Store the object and set flag to false. Change when link is clicked.
@@ -223,7 +229,7 @@ class LeagueController extends Controller
         Mail::send('Emails.request', $email_data, function($message) use ($league)
             {
               $message->to('recreationalleagues@gmail.com', 'Bob Whitaker')
-                      ->subject('League request from '. $league->person);
+                      ->subject('Edit League request from '. $league->leagueName);
             });
 
         $notify_data = array(
@@ -248,7 +254,7 @@ class LeagueController extends Controller
         Mail::send('Emails.notifyUpdate', $notify_data, function($message) use ($notify_cred)
             {
               $message->to($notify_cred['oldEmail'], $notify_cred['oldName'] ?? $notify_cred['oldLeagueName'])
-                      ->subject('Your league has been updated.');
+                      ->subject('Your league has been updated');
             });
 
         Session::flash('success', 'The request has been sent for approval.');
@@ -346,9 +352,20 @@ class LeagueController extends Controller
 
         $league->validated = true;
         $league->save();
+        if (0 === strpos($authToken, 'new'))
+        {
+            $email_data = array(
+                'url' => 'http://recreationalleagues.ca/leagues/' . urlencode($league->leaguename) . '-' . $league->id
+            );
 
-        Session::flash('success', 'The league has been added.');
-        return redirect('/');
+            Mail::send('Emails.leagueAccepted', $email_data, function($message) use ($league)
+            {
+                $message->to($league->email, $league->leaguename)
+                    ->subject('Your league was accepted!');
+            });
+        }
+
+        return redirect()->action('LeagueController@show', urlencode($league->leaguename) . '-' . $league->id);
     }
 
     public function denyLeague($id, $authToken)
@@ -364,7 +381,7 @@ class LeagueController extends Controller
         $league->delete();
 
         Session::flash('success', 'The league has been denied.');
-        return redirect('/');
+        return redirect()->action('PagesController@getIndex');
     }
 
     public function adminAdd()
@@ -404,6 +421,38 @@ class LeagueController extends Controller
         $league->save();
 
         Session::flash('success', 'The league has been added.');
+
+        return redirect()->action('PagesController@getIndex');
+    }
+
+    public function replyToLeague(Request $request, $id)
+    {
+        $league = League::find($id);
+
+        if ($league == null || !$league->validated)
+        {
+            Session::flash('error', 'The league does not exist.');
+            return redirect('/');
+        }
+
+        $this->validate($request, array(
+           'email' => 'required|max:50',
+           'message' => 'required|max:250',
+           'g-recaptcha-response' => 'required|captcha'
+        ));
+
+        $email_data = array(
+            'email' => $request->email,
+            'bodyMessage' => $request->message,
+        );
+
+        Mail::send('Emails.replyLeague', $email_data, function($message) use ($league)
+        {
+            $message->to($league->email, $league->leaguename)
+                ->subject('You got a reply to your league!');
+        });
+
+        Session::flash('success', 'Your reply has been sent.');
 
         return redirect()->action('PagesController@getIndex');
     }

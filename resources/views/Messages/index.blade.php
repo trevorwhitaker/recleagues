@@ -75,6 +75,12 @@
 			</a>
 
 			<a href="{{ route('comments.edit', $comment->id) }}" class="btn btn-primary">Edit</a>
+
+			@if (Auth::check())
+			{!! Form::open(['route' => ['comments.delete', $comment->id], 'method' => 'DELETE']) !!}
+			{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+			{!! Form::close() !!}
+			@endif
 		</p>
 		<div class="collapse" id="collapseComment{{$comment->id}}">
 		<div class="card card-block">

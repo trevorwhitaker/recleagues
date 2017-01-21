@@ -1,10 +1,10 @@
 <body>
 <div style = "background: #333 !important; padding:10px 20px;">
-	<h2 style = "color: #fff !important;">You have received a notification from recreational leagues!</h2>
+	<h2 style = "color: #fff !important;">Your league has been added to recreational leagues!</h2>
 </div>
 <div style = "padding:20px;">
 	<p style = "padding-top:20px;">
-		New information has been submitted for your league. If this was not you, please notify us. Otherwise please disregard this email.
+		Your league has just been approved. Click <a href="{{$url}}">here</a> to view it!
 	</p>
 
 

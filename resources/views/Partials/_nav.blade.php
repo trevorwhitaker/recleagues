@@ -16,7 +16,7 @@
 				<li class="{{ Request::is('/') ? "active" : "" }}"><a href="/">Home</a></li>
 				<li class="{{ (Route::is('leagues.*') AND !Request::is('leagues/create')) ? "active" : "" }}"><a href="/leagues/">Find A League</a></li>
 				<li class="{{ Request::is('leagues/create') ? "active" : "" }}"><a href="/leagues/create">Add A League</a></li>
-				<li class="{{ Route::is('comments.*') ? "active" : "" }}"><a href="/messages">Bulletin Board</a></li>
+				<li class="{{ Route::is('comments.*') ? "active" : "" }}"><a href="/bulletinboard">Bulletin Board</a></li>
 				<li class="{{ Request::is('FAQ') ? "active" : "" }}"><a href="/FAQ">FAQ</a></li>
 				<li class="{{ Request::is('contact') ? "active" : "" }}"><a href="/contact">Contact Us</a></li>
 			</ul>

@@ -92,8 +92,8 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'province' => [
+            'required' => 'Please select the city and province from the list provided',
         ],
     ],
 

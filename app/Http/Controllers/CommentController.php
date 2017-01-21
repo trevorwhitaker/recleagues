@@ -203,6 +203,7 @@ class CommentController extends Controller
     public function destroy($id)
     {
         Comment::destroy($id);
+        return redirect()->action('CommentController@index');
     }
 
     public function confirmMessage($id, $authToken)
@@ -211,14 +212,14 @@ class CommentController extends Controller
         if ($message == null || $message->authToken != $authToken || $message->validated)
         {
             Session::flash('error', 'The message does not exist.');
-            return redirect('/');
+            return redirect()->action('CommentController@index');
         }
 
         $message->validated = true;
         $message->save();
 
         Session::flash('success', 'The message has been approved.');
-        return redirect('/messages');
+        return redirect()->action('CommentController@index');
     }
 
     public function denyMessage($id, $authToken)
@@ -228,13 +229,13 @@ class CommentController extends Controller
         if ($message == null || $message->authToken != $authToken || $message->validated)
         {
             Session::flash('error', 'The message does not exist.');
-            return redirect('/messages');
+            return redirect()->action('CommentController@index');
         }
 
         $message->delete();
 
         Session::flash('success', 'The message has been denied.');
-        return redirect('/');
+        return redirect()->action('CommentController@index');
     }
 
     public function reply(Request $request)
@@ -244,7 +245,7 @@ class CommentController extends Controller
         if ($comment == null)
         {
             Session::flash('error', 'The comment does not exist.');
-            return redirect('/messages');
+            return redirect()->action('CommentController@index');
         }
 
         $email_data = array(
@@ -278,6 +279,19 @@ class CommentController extends Controller
             'province' => $province,
             'sport' => $sport
         );
+
+        return view('Messages.index')->withData($data);
+    }
+
+    public function getAdminPage()
+    {
+        $messages = Comment::where('validated', '=', true)->orderBy('city', 'DESC')->orderBy('created_at', 'DESC')->get();
+
+        $data = array(
+            'comments' => $messages,
+            'province' => null,
+            'sport' => null
+            );
 
         return view('Messages.index')->withData($data);
     }
