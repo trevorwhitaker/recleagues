@@ -206,7 +206,7 @@
 	    methods: {
 	      lookupCity: _.debounce(function() {
 	        var app = this;
-	        axios.get('http://localhost:8000/api/getcities/' + app.query)
+	        axios.get('http://recreationalleagues.ca/api/getcities/' + app.query)
 	          .then(function(response) {
 	            app.cities = response.data
 	          })
