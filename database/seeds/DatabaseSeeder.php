@@ -4,6 +4,8 @@ use Illuminate\Database\Seeder;
 
 use App\City;
 
+use App\Faq;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -14,7 +16,46 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(CityTableSeeder::class);
+        $this->call(FaqTableSeeder::class);
     }
+}
+
+class FaqTableSeeder extends Seeder
+{
+	public function run()
+	{
+		DB::table('faqs')->delete();
+
+		$faq = new Faq();
+		$faq->header = 'What is Recreational Leagues about and are there any costs?';
+		$faq->body = 'Recreational Leagues is a FREE directory of various sport leagues. We act as another way for people to find a league based on your search criteria. When you click on a league, you will see an information page and a brief description. If the league has a website, a link is provided.';
+		$faq->save();
+
+		$faq = new Faq();
+		$faq->header = 'Do you provide links to team websites?';
+		$faq->body = 'Generally this question comes from teams in leagues that do not have their own website while your team does have a website. Our primary purpose is to provide links to leagues. At this time we do not provide links to individual teams.';
+		$faq->save();
+
+		$faq = new Faq();
+		$faq->header = 'Can you help me find a team to play for?';
+		$faq->body = 'No, but we can point you in the right direction. The website is set up to be a directory of leagues. We do not have any affiliation with any of the leagues.';
+		$faq->save();
+
+		$faq = new Faq();
+		$faq->header = 'Can I change the details of a league I already added?';
+		$faq->body = 'Yes you can. Find your league and on the bottom of the page there will be a link to submit a request to change your league details. Simply click the link and update the information. Once you submit your changes they will be reviewed and an email will be sent to the current email address of that league. When you edit a league your league will be temporarily hidden until the changes are approved.';
+		$faq->save();
+
+		$faq = new Faq();
+		$faq->header = 'How can I use the Bulletin Board?';
+		$faq->body = "This is not a discussion forum. It is designed to connect you with interested people. You can post a message on the bulletin board and it can be replied to. Your email is hidden. The reply and any further discussions with you are not shown. Topics are unlimited and can include looking for players & teams or announcing a tournament. A search feature is also provided.\nWhen an item is posted, @Rec__Leagues will automatically tweet the topic and city with a link to the message.";
+		$faq->save();
+
+		$faq = new Faq();
+		$faq->header = 'Why is my email needed to add a league?';
+		$faq->body = 'Your email is used as a security contact if any changes are made to your information. It is hidden from users who want to contact you from your league page on our website.';
+		$faq->save();
+	}
 }
 
 class CityTableSeeder extends Seeder

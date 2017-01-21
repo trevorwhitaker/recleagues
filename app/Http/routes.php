@@ -15,7 +15,19 @@ Route::get('contact', 'PagesController@getContact');
 
 Route::get('confirmation', 'PagesController@getConfirmation');
 
-Route::get('FAQ', 'PagesController@getFAQ');
+Route::get('FAQ', 'FaqController@index');
+
+Route::get('FAQ/adminedit', ['as' => 'faq.index', 'uses' => 'FaqController@adminIndex'])->middleware('auth.basic');
+
+Route::get('FAQ/adminadd', ['as' => 'faq.add', 'uses' => 'FaqController@create'])->middleware('auth.basic');
+
+Route::delete('FAQ/adminadd/{id}', ['as' => 'faq.destroy', 'uses' => 'FaqController@destroy'])->middleware('auth.basic');
+
+Route::post('FAQ/adminadd', ['as' => 'faq.store', 'uses' => 'FaqController@store'])->middleware('auth.basic');
+
+Route::get('FAQ/adminedit/{id}', ['as' => 'faq.edit', 'uses' => 'FaqController@edit'])->middleware('auth.basic');
+
+Route::post('FAQ/adminedit/{id}', ['as' => 'faq.update', 'uses' => 'FaqController@update'])->middleware('auth.basic');
 
 Route::get('leaguePage', 'PagesController@getLeaguePage');
 
