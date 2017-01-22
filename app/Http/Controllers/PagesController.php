@@ -56,7 +56,7 @@ class PagesController extends Controller
 
     	if (strlen($params['text']) > 400)
     	{
-    		Session::flash('error', 'The email address must be less than 100 characters.');
+    		Session::flash('error', 'The message must be less than 400 characters.');
     		return redirect()->action('PagesController@getContact');
     	}
 
@@ -75,7 +75,7 @@ class PagesController extends Controller
     		'text' => $params['text']
     		);
 
-    	Mail::send('emails.contact', $emaildata, function($message) use ($emaildata)
+    	Mail::send('Emails.contact', $emaildata, function($message) use ($emaildata)
             {
               $message->to('trevor.whitaker@hotmail.com', 'Trevor Whitaker')
                       ->subject('New Message/Request');

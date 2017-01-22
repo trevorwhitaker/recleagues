@@ -6,7 +6,7 @@
 	<div style="text-align:center">
 		<br>
 
-		<a href="/messages/create" class="btn btn-info" role="button">Post A Message</a>
+		<a href="{{ route('comments.create') }}" class="btn btn-info">Post A Message</a>
 
 		<br>
 		<hr>

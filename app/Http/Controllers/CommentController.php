@@ -267,7 +267,7 @@ class CommentController extends Controller
     public function getMessages()
     {
         $params = Input::all();
-        return redirect('messages/filter/' . $params['province']. '/' . $params['sport']);
+        return redirect()->action('CommentController@filter', [$params['province'], $params['sport']]);
     }
 
     public function filter($province, $sport)
