@@ -13,7 +13,7 @@
 			@if ($league->website != null)
 				<tr>
 					<td width = "20%">Website</td>
-					<td><a href="{{ $league->website }}" target="_blank"> {{ $league->website }} </a></td>
+					<td><a href="{{ strpos($league->website, 'http') !== false ? $league->website :  "//" . $league->website }}" target="_blank"> {{ $league->website }} </a></td>
 				</tr>
 			@endif
 			<tr>

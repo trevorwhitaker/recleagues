@@ -424,7 +424,7 @@ class LeagueController extends Controller
 
         Session::flash('success', 'The league has been added.');
 
-        return redirect()->action('PagesController@getIndex');
+        return redirect()->action('LeagueController@show', urlencode($league->leaguename) . '-' . $league->id);
     }
 
     public function replyToLeague(Request $request, $id)
