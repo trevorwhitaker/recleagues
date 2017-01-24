@@ -283,7 +283,7 @@ class LeagueController extends Controller
      */
     public function destroy($id)
     {
-        League::destory($id);
+        League::destroy($id);
     }
 
     public function adminUpdate(Request $request, $id)
