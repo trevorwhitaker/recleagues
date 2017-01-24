@@ -284,6 +284,7 @@ class LeagueController extends Controller
     public function destroy($id)
     {
         League::destroy($id);
+        Session::flash('success', 'The league was deleted.');
         return redirect()->action('PagesController@getIndex');
     }
 
