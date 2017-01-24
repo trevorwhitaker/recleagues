@@ -55,7 +55,14 @@
 			{{ Form::checkbox('type[2]', 'Coed', strpos($league->type, 'Coed') !== false ? true : false, ['class' => 'gender-check']) }}&nbsp;&nbsp;&nbsp;
 			<span class="gender-text">Coed</span>
 			</div>
-
+			<div>
+			{{ Form::checkbox('type[3]', 'Youth - Boys', strpos($league->type, 'Youth - Boys') !== false ? true : false, ['class' => 'gender-check']) }}&nbsp;&nbsp;&nbsp;
+			<span class="gender-text">Youth - Boys</span>
+			</div>
+			<div>
+			{{ Form::checkbox('type[4]', 'Youth - Girls', strpos($league->type, 'Youth - Girls') !== false ? true : false, ['class' => 'gender-check']) }}&nbsp;&nbsp;&nbsp;
+			<span class="gender-text">Youth - Girls</span>
+			</div>
 			<br>
 
 			{{ Form::label('email', 'Contact Email Address', array('class' => 'addLeagueText')) }}
