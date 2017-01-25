@@ -36,7 +36,7 @@
 						'Slo-Pitch' => 'Slo-Pitch',
 						'Soccer' => 'Soccer', 
 						'VolleyBall' => 'VolleyBall',
-						'Baseketball' => 'Basketball'], $data['sport'], ['placeholder' => '', 'class' => 'form-control findLeagueFilters', 'required' => '']) }}
+						'Basketball' => 'Basketball'], $data['sport'], ['placeholder' => '', 'class' => 'form-control findLeagueFilters', 'required' => '']) }}
 					</td>
 					<td class="findLeagueTD">
 						{{ Form::label('type', 'Gender', array('class' => 'findLeagueFilters')) }}

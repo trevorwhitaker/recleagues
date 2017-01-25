@@ -42,7 +42,7 @@
 						'Slo-Pitch' => 'Slo-Pitch',
 						'Soccer' => 'Soccer', 
 						'VolleyBall' => 'VolleyBall',
-						'Baseketball' => 'Basketball',
+						'Basketball' => 'Basketball',
 						'General' => 'General'], $data['sport'], ['placeholder' => '', 'class' => 'form-control findLeagueFilters', 'required' => '']) }}
 					</td>
 					<td class="findLeagueTD">
