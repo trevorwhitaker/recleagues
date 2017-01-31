@@ -326,7 +326,7 @@ class LeagueController extends Controller
 
     public function filter($province, $sport, $type)
     {
-        $leagues = League::select(array('Id', 'LeagueName', 'city', 'type'))->where(array('Province' => $province, 'Sport' => $sport, 'validated' => true))->where('Type', 'LIKE', '%'.$type.'%')->get();
+        $leagues = League::select(array('Id', 'LeagueName', 'city', 'type'))->where(array('Province' => $province, 'Sport' => $sport, 'validated' => true))->where('Type', 'LIKE', '%'.$type.'%')->orderBy('city', 'DESC')->get();
         $data = array(
             'leagues' => $leagues,
             'province' => $province,
@@ -454,7 +454,7 @@ class LeagueController extends Controller
                 ->subject('You got a reply to your league!');
         });
 
-        Session::flash('success', 'Your reply has been sent.');
+        Session::flash('success', 'Your message has been sent.');
 
         return redirect()->action('PagesController@getIndex');
     }

@@ -29,6 +29,8 @@
 		@yield('content')
 	</div>
 
+	@yield('styles')
+	
 	@yield('scripts')
 
 	<!-- Latest compiled and minified JavaScript -->

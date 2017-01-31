@@ -1,6 +1,6 @@
 @extends('Layouts.main')
 
-@section('title', ' | Add A League')
+@section('title', ' | Edit A FAQ')
 
 @section('content')
 

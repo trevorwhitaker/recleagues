@@ -1,6 +1,6 @@
 @extends('Layouts.main')
 
-@section('title', ' | Add A League')
+@section('title', ' | Edit A Message')
 
 @section('stylesheets')
 	{!! Html::style('css/parsley.css') !!}
@@ -36,19 +36,8 @@
 			'Quebec' => 'Quebec',
 			'Saskatchewan' => 'Saskatchewan'], $message->province, ['placeholder' => '', 'class' => 'form-control', 'required' => '']) }}
 
-			{{ Form::label('sport', 'Sport', array('class' => 'addLeagueText')) }}
-			{{ Form::select('sport', [
-			'Baseball' => 'Baseball',
-			'Fast-Pitch' => 'Fast-Pitch',
-			'Flag Football' => 'Flag Football',
-			'Hockey' => 'Hockey',
-			'Slo-Pitch' => 'Slo-Pitch',
-			'Ultimate Frisbee' => 'Ultimate Frisbee',
-			'Soccer' => 'Soccer', 
-			'Volleyball' => 'Volleyball',
-			'Basketball' => 'Basketball',
-			'General' => 'General'], $message->sport, ['placeholder' => '', 'class' => 'form-control', 'required' => '']) }}
-
+			@include('Partials._sportsList', array('className' => 'findLeagueFilters', 'showGeneral' => true))
+			
 			{{ Form::label('password', 'Password (This was given when you created the message)', array('class' => 'addLeagueText')) }}
 			{{ Form::password('password', array('class' => 'form-control')) }}
 

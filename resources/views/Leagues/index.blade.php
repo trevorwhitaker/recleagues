@@ -25,18 +25,7 @@
 						'Saskatchewan' => 'Saskatchewan'], $data['province'], ['placeholder' => '', 'class' => 'form-control findLeagueFilters', 'required' => '']) }}
 					</td>
 					<td class="findLeagueTD">
-						{{ Form::label('sport', 'Sport', array('class' => 'findLeagueFilters')) }}
-						{{ Form::select('sport', [
-						'Baseball' => 'Baseball',
-						'Fast-Pitch' => 'Fast-Pitch',
-						'Flag Football' => 'Flag Football',
-						'Hockey' => 'Hockey',
-						'Ball Hockey' => 'Ball Hockey',
-						'Ultimate Frisbee' => 'Ultimate Frisbee',
-						'Slo-Pitch' => 'Slo-Pitch',
-						'Soccer' => 'Soccer', 
-						'VolleyBall' => 'VolleyBall',
-						'Basketball' => 'Basketball'], $data['sport'], ['placeholder' => '', 'class' => 'form-control findLeagueFilters', 'required' => '']) }}
+						@include('Partials._sportsList', array('className' => 'findLeagueFilters', 'showGeneral' => false))
 					</td>
 					<td class="findLeagueTD">
 						{{ Form::label('type', 'Gender', array('class' => 'findLeagueFilters')) }}

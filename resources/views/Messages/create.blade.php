@@ -1,6 +1,6 @@
 @extends('Layouts.main')
 
-@section('title', ' | Add A League')
+@section('title', ' | Create A Message')
 
 @section('stylesheets')
 	{!! Html::style('css/parsley.css') !!}
@@ -36,19 +36,7 @@
 			'Quebec' => 'Quebec',
 			'Saskatchewan' => 'Saskatchewan'], null, ['placeholder' => '', 'class' => 'form-control', 'required' => '']) }}
 
-			{{ Form::label('sport', 'Sport', array('class' => 'addLeagueText')) }}
-			{{ Form::select('sport', [
-			'Baseball' => 'Baseball',
-			'Fast-Pitch' => 'Fast-Pitch',
-			'Flag Football' => 'Flag Football',
-			'Hockey' => 'Hockey',
-			'Ball Hockey' => 'Ball Hockey',
-			'Ultimate Frisbee' => 'Ultimate Frisbee',
-			'Slo-Pitch' => 'Slo-Pitch',
-			'Soccer' => 'Soccer', 
-			'Volleyball' => 'Volleyball',
-			'Basketball' => 'Basketball',
-			'General' => 'General'], null, ['placeholder' => '', 'class' => 'form-control', 'required' => '']) }}
+			@include('Partials._sportsList', array('className' => 'findLeagueFilters', 'showGeneral' => true))
 
 			{{ Form::label('password', 'Password (This will be used to edit your message in the future)', array('class' => 'addLeagueText')) }}
 			{{ Form::password('password', array('class' => 'form-control')) }}
