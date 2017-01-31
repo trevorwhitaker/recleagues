@@ -15,7 +15,7 @@
 		 </ul>
 </div>
 
-@include('Partials._sportsList', array('className' => 'addLeagueText', 'showGeneral' => false))
+@include('Partials._sportsList', array('className' => 'addLeagueText', 'showGeneral' => false, 'sport' => $league->sport))
 
 <div style="text-align: left;">
 {{ Form::checkbox('type[0]', 'Male', strpos($league->type, 'Male') !== false ? true : false, ['class' => 'gender-check']) }}&nbsp;&nbsp;&nbsp;

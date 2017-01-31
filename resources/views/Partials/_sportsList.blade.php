@@ -25,4 +25,4 @@
 'Soccer' => 'Soccer', 
 'Ultimate Frisbee' => 'Ultimate Frisbee',
 'Volleyball' => 'Volleyball'],
-null, ['placeholder' => '', 'class' => 'form-control ' . $className, 'required' => '']) }}
+$sport, ['placeholder' => '', 'class' => 'form-control ' . $className, 'required' => '']) }}

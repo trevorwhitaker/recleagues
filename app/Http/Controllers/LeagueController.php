@@ -326,7 +326,7 @@ class LeagueController extends Controller
 
     public function filter($province, $sport, $type)
     {
-        $leagues = League::select(array('Id', 'LeagueName', 'city', 'type'))->where(array('Province' => $province, 'Sport' => $sport, 'validated' => true))->where('Type', 'LIKE', '%'.$type.'%')->orderBy('city', 'DESC')->get();
+        $leagues = League::select(array('Id', 'LeagueName', 'city', 'type'))->where(array('Province' => $province, 'Sport' => $sport, 'validated' => true))->where('Type', 'LIKE', '%'.$type.'%')->orderBy('city', 'ASC')->get();
         $data = array(
             'leagues' => $leagues,
             'province' => $province,

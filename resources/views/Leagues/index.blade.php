@@ -25,7 +25,7 @@
 						'Saskatchewan' => 'Saskatchewan'], $data['province'], ['placeholder' => '', 'class' => 'form-control findLeagueFilters', 'required' => '']) }}
 					</td>
 					<td class="findLeagueTD">
-						@include('Partials._sportsList', array('className' => 'findLeagueFilters', 'showGeneral' => false))
+						@include('Partials._sportsList', array('className' => 'findLeagueFilters', 'showGeneral' => false, 'sport' => $data['sport']))
 					</td>
 					<td class="findLeagueTD">
 						{{ Form::label('type', 'Gender', array('class' => 'findLeagueFilters')) }}
