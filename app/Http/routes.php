@@ -67,6 +67,8 @@ Route::get('leagues/{leagues}/admin', ['as' => 'leagues.adminEdit', 'uses' => 'L
 
 Route::post('leagues/{leagues}/admin', ['as' => 'leagues.adminUpdate', 'uses' => 'LeagueController@adminUpdate'])->middleware('auth.basic');
 
+Route::get('leagues/confirmEdit/{id}/{authToken}', ['as' => 'leagues.confirmEdit', 'uses' => 'LeagueController@confirmEditLeague']);
+
 Route::get('leagues/confirm/{id}/{authToken}', ['as' => 'leagues.confirm', 'uses' => 'LeagueController@confirmLeague']);
 
 Route::get('leagues/deny/{id}/{authToken}', ['as' => 'leagues.deny', 'uses' => 'LeagueController@denyLeague']);

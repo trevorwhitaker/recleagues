@@ -100,7 +100,7 @@ class CommentController extends Controller
         Mail::send('Emails.createMessage', $email_data, function($message) use ($comment)
         {
             $message->to('recreationalleagues@gmail.com', 'Bob Whitaker')
-                ->subject('Message request from '. $comment->name);
+                ->subject('Message posted on bulletin board');
         });
 
         Twitter::postTweet(array('status' => 'New Message posted on the bulletin board! City: ' . $comment->city . ' Topic: ' . $comment->subject . ' www.recretionalleagues.ca/messages#' . $comment->id, 'format' => 'json'));
@@ -185,8 +185,8 @@ class CommentController extends Controller
 
         Mail::send('Emails.createMessage', $email_data, function($message) use ($comment)
         {
-            $message->to('trevor.whitaker@hotmail.com', 'Trevor Whitaker')
-                ->subject('Message has been updated');
+            $message->to('recreationalleagues@gmail.com', 'Bob Whitaker')
+                ->subject('Edit Message On Bulletin Board');
         });
 
         Session::flash('success', 'Your message has been updated.');
@@ -256,7 +256,7 @@ class CommentController extends Controller
         Mail::send('Emails.replyMessage', $email_data, function($message) use ($comment)
         {
             $message->to($comment->email, 'Recreational Leagues')
-                ->subject('You got a response from your message!');
+                ->subject('You got a response to your message on the bulletin board!');
         });
 
         Session::flash('success', 'Your reply has been sent.');

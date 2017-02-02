@@ -4,6 +4,7 @@
 
 @section('content')
 <div style="margin-right: 15px; margin-left: 15px; text-align: center;">
+	<a href="{{ route('faq.add') }}" class="btn btn-primary">Add A New FAQ</a>
 	@foreach ($faqs as $faq)
 		<p class="default-text"><a href="/FAQ#{{str_replace(' ', '-', str_replace('?', '', $faq->header))}}">{{$faq->header}}</a></p>
 	@endforeach

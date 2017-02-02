@@ -18,6 +18,8 @@ use Mail;
 
 use DB;
 
+use Carbon\Carbon;
+
 class LeagueController extends Controller
 {
     /**
@@ -175,16 +177,17 @@ class LeagueController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $league = League::find($id);
-        if ($league == null || !$league->validated)
+        $oldLeague = League::find($id);
+        if ($oldLeague == null || !$oldLeague->validated)
         {
             Session::flash('error', 'The league does not exist.');
             return redirect('/');
         }
 
-        $oldEmail = $league->email;
-        $oldName = $league->person;
-        $oldLeagueName = $league->leaguename;
+        $oldEmail = $oldLeague->email;
+        $oldName = $oldLeague->person;
+        $oldLeagueName = $oldLeague->leaguename;
+        $oldLeagueId = $oldLeague->id;
 
         $this->validate($request, array(
                'leaguename' => 'required|max:250',
@@ -200,13 +203,15 @@ class LeagueController extends Controller
                'g-recaptcha-response' => 'required|captcha'
             ));
 
+        $league = new League();
         $league->fill($request->all());
         if (isset($request->type))
         {
             $league->type = join(", ", $request->type);
         }
         $league->validated = 0;
-        $league->authToken = 'old' . $this->getRandomString(25);
+        $league->parent_id = $oldLeagueId;
+        $league->authToken = $this->getRandomString(25);
         $league->save();
 
         // send email here to validate with id field. Store the object and set flag to false. Change when link is clicked.
@@ -222,39 +227,27 @@ class LeagueController extends Controller
             'phone' => $league->phone,
             'email' => $league->email,
             'description' => $league->description,
-            'authtoken' => $league->authToken,
+            'authToken' => $league->authToken,
             'id' => $league->id,
-        );
-
-        Mail::send('Emails.request', $email_data, function($message) use ($league)
-            {
-              $message->to('recreationalleagues@gmail.com', 'Bob Whitaker')
-                      ->subject('Edit League request from '. $league->leagueName);
-            });
-
-        $notify_data = array(
-            'leagueName' => $league->leagueName,
-            'city' => $league->city,
-            'province' => $league->province,
-            'sport' => $league->sport,
-            'type' => $league->type,
-            'website' => $league->website,
-            'person' => $league->person,
-            'phone' => $league->phone,
-            'email' => $league->email,
-            'description' => $league->description
         );
 
         $notify_cred = array(
             'oldEmail' => $oldEmail,
             'oldName' => $oldName,
-            'oldLeagueName' => $oldLeagueName
+            'oldLeagueName' => $oldLeagueName,
         );
 
-        Mail::send('Emails.notifyUpdate', $notify_data, function($message) use ($notify_cred)
+        Mail::send('Emails.notifyUpdate', $email_data, function($message) use ($league)
+            {
+              $message->to('recreationalleagues@gmail.com', 'Bob Whitaker')
+                      ->subject('Edit League request from '. $league->leagueName);
+            });
+
+
+        Mail::send('Emails.notifyUpdate', $email_data, function($message) use ($notify_cred)
             {
               $message->to($notify_cred['oldEmail'], $notify_cred['oldName'] ?? $notify_cred['oldLeagueName'])
-                      ->subject('Your league has been updated');
+                      ->subject('Edit League request from Recreational Leagues');
             });
 
         Session::flash('success', 'The request has been sent for approval.');
@@ -357,7 +350,7 @@ class LeagueController extends Controller
         if (0 === strpos($authToken, 'new'))
         {
             $email_data = array(
-                'url' => 'http://recreationalleagues.ca/leagues/' . urlencode($league->leaguename) . '-' . $league->id
+                'url' => 'http://recreationalleagues.ca/leagues/' . rawurlencode($league->leaguename) . '-' . $league->id
             );
 
             Mail::send('Emails.leagueAccepted', $email_data, function($message) use ($league)
@@ -367,7 +360,7 @@ class LeagueController extends Controller
             });
         }
 
-        return redirect()->action('LeagueController@show', urlencode($league->leaguename) . '-' . $league->id);
+        return redirect()->action('LeagueController@show', rawurlencode($league->leaguename) . '-' . $league->id);
     }
 
     public function denyLeague($id, $authToken)
@@ -384,6 +377,34 @@ class LeagueController extends Controller
 
         Session::flash('success', 'The league has been denied.');
         return redirect()->action('PagesController@getIndex');
+    }
+
+    public function confirmEditLeague($id, $authToken)
+    {
+        $league = League::find($id);
+        if ($league == null || $league->authToken != $authToken || $league->validated || $league->parent_id == 0)
+        {
+            Session::flash('error', 'The league does not exist.');
+            return redirect('/');
+        }
+
+        $oldLeague = League::find($league->parent_id);
+
+        if ($league->updated_at->diffInHours(Carbon::now()) > 24 || $oldLeague == null)
+        {
+            Session::flash('error', 'The link has expired.');
+            return redirect('/');
+        }
+
+
+        $oldLeague->fill($league->toArray());
+
+        $oldLeague->save();
+
+        Leauge::destroy($league->id);
+
+        Session::flash('success', 'The league has been successfully updated.');
+        return redirect()->action('LeagueController@show', rawurlencode($oldLeague->leaguename) . '-' . $oldLeague->id);
     }
 
     public function adminAdd()
@@ -424,7 +445,7 @@ class LeagueController extends Controller
 
         Session::flash('success', 'The league has been added.');
 
-        return redirect()->action('LeagueController@show', urlencode($league->leaguename) . '-' . $league->id);
+        return redirect()->action('LeagueController@show', rawurlencode($league->leaguename) . '-' . $league->id);
     }
 
     public function replyToLeague(Request $request, $id)
@@ -451,7 +472,7 @@ class LeagueController extends Controller
         Mail::send('Emails.replyLeague', $email_data, function($message) use ($league)
         {
             $message->to($league->email, $league->leaguename)
-                ->subject('You got a reply to your league!');
+                ->subject('You got a message for your league!');
         });
 
         Session::flash('success', 'Your message has been sent.');

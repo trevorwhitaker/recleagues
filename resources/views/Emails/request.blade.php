@@ -1,6 +1,6 @@
 <body>
 <div style = "background: #333 !important; padding:10px 20px;">
-	<h2 style = "color: #fff !important;">You have received an add league request from recreational leagues!</h2>
+	<h2 style = "color: #fff !important;">You have received an add league request from Recreational Leagues!</h2>
 </div>
 <div style = "padding:20px;">
 	<div style = "border: 1px solid #333; padding:20px;">
