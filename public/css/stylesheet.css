@@ -285,3 +285,7 @@ body {
 .league-page-ball-hockey:after {
 	background-image: url('../Images/Backgrounds/hockey.PNG');
 }
+
+.league-page-dodgeball:after {
+	background-image: url('../Images/Backgrounds/dodgeball.jpg');
+}

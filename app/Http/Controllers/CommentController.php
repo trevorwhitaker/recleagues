@@ -18,6 +18,8 @@ use Hash;
 
 use Twitter;
 
+use Carbon\Carbon;
+
 class CommentController extends Controller
 {
     /**
@@ -27,12 +29,13 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $messages = Comment::where('validated', '=', true)->orderBy('city', 'DESC')->orderBy('created_at', 'DESC')->get();
+        $messages = Comment::where('validated', '=', true)->where('created_at', '>=', Carbon::now()->subMonth())->orderBy('city', 'ASC')->orderBy('created_at', 'DESC')->get();
 
         $data = array(
             'comments' => $messages,
             'province' => null,
-            'sport' => null
+            'sport' => null,
+            'fromMain' => true
             );
 
         return view('Messages.index')->withData($data);
@@ -277,7 +280,8 @@ class CommentController extends Controller
         $data = array(
             'comments' => $comments,
             'province' => $province,
-            'sport' => $sport
+            'sport' => $sport,
+            'fromMain' => false
         );
 
         return view('Messages.index')->withData($data);
@@ -290,7 +294,8 @@ class CommentController extends Controller
         $data = array(
             'comments' => $messages,
             'province' => null,
-            'sport' => null
+            'sport' => null,
+            'fromMain' => true
             );
 
         return view('Messages.index')->withData($data);

@@ -47,51 +47,59 @@
 
 	</div>
 	<div style="text-align: center;">
-	@foreach($data['comments'] as $comment)
-		<hr style="border: 1px solid black !important">
-		<a name="{{ $comment->id }}"></a>
-		<h4> {{ $comment->subject }}</h4>
-		<p> City: {{ $comment->city }} </p>
-		<p> Posted on: {{ $comment->updated_at }} </p>
-		<p> Posted by: {{ $comment->name }} </p>
-		<br>
-		<p> {{$comment->message }} </p>
+	@if (!$data['fromMain'] and ($data['comments'] == null or count($data['comments']) == 0))
+		<p class="default-text" style="margin-top: 10px;"> No messages posted fitting your parameters </p>
+	@else
+		@if ($data['fromMain'])
+			<p class="default-text" style="margin-top: 10px;">Showing messages from the past 30 days</p>
+		@endif
+		@foreach($data['comments'] as $comment)
+			<hr style="border: 1px solid black !important">
+			<a name="{{ $comment->id }}"></a>
+			<h4> {{ $comment->subject }}</h4>
+			<p> City: {{ $comment->city }} </p>
+			<p> Posted on: {{ date_format($comment->updated_at, 'M j, Y') }} </p>
+			<p> Posted by: {{ $comment->name }} </p>
+			<br>
+			<p> {{$comment->message }} </p>
 
-		<p>
-			<a class="btn btn-primary" data-toggle="collapse" href="#collapseComment{{$comment->id}}" aria-expanded="false" aria-controls="collapseComment{{$comment->id}}">
-				Reply
-			</a>
+			<p>
+				<a class="btn btn-primary" data-toggle="collapse" href="#collapseComment{{$comment->id}}" aria-expanded="false" aria-controls="collapseComment{{$comment->id}}">
+					Reply
+				</a>
 
-			<a href="{{ route('comments.edit', $comment->id) }}" class="btn btn-primary">Edit</a>
+				<a href="{{ route('comments.edit', $comment->id) }}" class="btn btn-primary">Edit</a>
 
-			@if (Auth::check())
-			{!! Form::open(['route' => ['comments.delete', $comment->id], 'method' => 'DELETE']) !!}
-			{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-			{!! Form::close() !!}
-			@endif
-		</p>
-		<div class="collapse" id="collapseComment{{$comment->id}}">
-		<div class="card card-block">
-			<div class="row">
-				<div class="col-md-2 col-md-offset-5">
-					{!! Form::open(array('route' => 'comments.reply')) !!}
-						{{ Form::label('email', 'Return Email', array('class' => 'addLeagueText')) }}
-						{{ Form::text('email', null, array('class' => 'form-control')) }}
+				@if (Auth::check())
+				{!! Form::open(['route' => ['comments.delete', $comment->id], 'method' => 'DELETE']) !!}
+				{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+				{!! Form::close() !!}
+				@endif
+			</p>
+			<div class="collapse" id="collapseComment{{$comment->id}}">
+			<div class="card card-block">
+				<div class="row">
+					<div class="col-md-2 col-md-offset-5">
+						{!! Form::open(array('route' => 'comments.reply')) !!}
+							{{ Form::label('email', 'Return Email', array('class' => 'addLeagueText')) }}
+							{{ Form::text('email', null, array('class' => 'form-control')) }}
 
-						{{ Form::label('message', 'Message', array('class' => 'addLeagueText')) }}
-						{{ Form::textarea('message', null, array('class' => 'form-control')) }}
+							{{ Form::label('message', 'Message', array('class' => 'addLeagueText')) }}
+							{{ Form::textarea('message', null, array('class' => 'form-control')) }}
 
-						{{ Form::hidden('id', $comment->id) }}
-						
-						{{ Form::submit('Submit', array('class' => 'btn btn-primary center-block')) }}
+							{{ Form::hidden('id', $comment->id) }}
+							
+							{{ Form::submit('Submit', array('class' => 'btn btn-primary center-block')) }}
 
-						{!! Form::close() !!}
+							{!! Form::close() !!}
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	@endforeach
-	<br>
+		@endforeach
+		<hr style="border: 1px solid black !important">
+		<br>
+	@endif
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	@endsection

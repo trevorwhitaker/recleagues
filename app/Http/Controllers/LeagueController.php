@@ -401,7 +401,7 @@ class LeagueController extends Controller
 
         $oldLeague->save();
 
-        Leauge::destroy($league->id);
+        League::destroy($league->id);
 
         Session::flash('success', 'The league has been successfully updated.');
         return redirect()->action('LeagueController@show', rawurlencode($oldLeague->leaguename) . '-' . $oldLeague->id);

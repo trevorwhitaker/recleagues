@@ -8,58 +8,18 @@
 		If this was not you, please disregard this email and the changes will not be applied.
 	</p>
 
-	<table width="30%" align="center" style="position: relative; z-index: 1; table-layout: fixed;">
-		<tbody>
-			<tr>
-				<td>League Name</td>
-				<td>{{ $leagueName }}</td>
-			</tr>
-			@if ($website != null)
-				<tr>
-					<td width = "20%">Website</td>
-					<td>{{ $website }}</td>
-				</tr>
-			@endif
-			<tr>
-				<td>City</td>
-				<td>{{ $city }}</td>
-			</tr>
-			<tr>
-				<td>Province</td>
-				<td>{{ $province }}</td>
-			</tr>
-			<tr>
-				<td>Sport</td>
-				<td>{{ $sport }}</td>
-			</tr>
-			<tr>
-				<td>Gender</td>
-				<td>{{ $type }}</td>
-			</tr>
-			@if ($person != null)
-				<tr>
-					<td>Contact Name</td>
-					<td>{{ $person }}</td>
-				</tr>
-			@endif
-			@if ($phone != null)
-			<tr>
-				<td>Phone</td>
-				<td>{{ $phone }}</td>
-			</tr>
-			@endif
-			<tr>
-				<td>Email</td>
-				<td>{{$email}}</td>
-			</tr>
-			@if ($description != null)
-				<tr>
-					<td>Description</td>
-					<td style="text-overflow: clip; white-space: normal;">{{ $description }}</td>
-				</tr>
-			@endif
-		</tbody>
-	</table>
+	<div style = "border: 1px solid #333; padding:20px;">
+		<strong>League Name:</strong>&nbsp;{{$leagueName}}<br/>
+		<strong>Province:</strong>&nbsp;{{$province}}<br/>
+		<strong>City:</strong>&nbsp;{{$city}}<br/>
+		<strong>Sport:</strong>&nbsp;{{$sport}}<br/>
+		<strong>Type:</strong>&nbsp;{{$type}}<br/>
+		@if ($website != null) <strong>Website:</strong>&nbsp;{{$website}}<br/> @endif
+		@if ($person != null)<strong>Contact Name:</strong>&nbsp;{{$person}}<br/> @endif
+		@if ($phone != null)<strong>Phone:</strong>&nbsp;{{$phone}}<br/> @endif
+		@if ($email != null)<strong>Email:</strong>&nbsp;{{$email}}<br/> @endif
+		@if ($description != null)<strong>Description:</strong>&nbsp;{{$description}}<br/> @endif
+	</div>
 	<p style = "padding-top:20px;">
 		This link is only valid for 24 hours.
 	</p>
