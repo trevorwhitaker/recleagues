@@ -79,7 +79,7 @@
 			<div class="collapse" id="collapseComment{{$comment->id}}">
 			<div class="card card-block">
 				<div class="row">
-					<div class="col-md-2 col-md-offset-5">
+					<div class="col-md-4 col-md-offset-4">
 						{!! Form::open(array('route' => 'comments.reply')) !!}
 							{{ Form::label('email', 'Return Email', array('class' => 'addLeagueText')) }}
 							{{ Form::text('email', null, array('class' => 'form-control')) }}

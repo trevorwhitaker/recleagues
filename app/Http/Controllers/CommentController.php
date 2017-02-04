@@ -72,7 +72,7 @@ class CommentController extends Controller
     {
         $this->validate($request, array(
                'name' => 'required|max:100',
-               'subject' => 'required|max:80',
+               'subject' => 'required|max:60',
                'email' => 'required|email|max:100',
                'sport' => 'required|max:50',
                'message' => 'required|max:1000',
@@ -91,7 +91,7 @@ class CommentController extends Controller
 
         $email_data = array(
             'name' => $comment->name,
-            'city' => $comment->subject,
+            'city' => $comment->city,
             'province' => $comment->province,
             'sport' => $comment->sport,
             'email' => $comment->email,
@@ -106,7 +106,7 @@ class CommentController extends Controller
                 ->subject('Message posted on bulletin board');
         });
 
-        Twitter::postTweet(array('status' => 'New Message posted on the bulletin board! City: ' . $comment->city . ' Topic: ' . $comment->subject . ' www.recretionalleagues.ca/messages#' . $comment->id, 'format' => 'json'));
+        Twitter::postTweet(array('status' => 'New Message posted on the bulletin board! City: ' . $comment->city . ' - Topic: ' . $comment->subject . ' recreationalleagues.ca/bulletinboard#' . $comment->id, 'format' => 'json'));
 
         Session::flash('success', 'Your message has added.');
 

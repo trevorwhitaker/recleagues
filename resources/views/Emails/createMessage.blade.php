@@ -5,7 +5,7 @@
 <div style = "padding:20px;">
 	<div style = "border: 1px solid #333; padding:20px;">
 		<strong>Name:</strong>&nbsp;{{$name}}<br/>
-		<strong>Subject:</strong>&nbsp;{{$province}}<br/>
+		<strong>Topic:</strong>&nbsp;{{$subject}}<br/>
 		<strong>Email:</strong>&nbsp;{{$email}}<br/>
 		<strong>Province:</strong>&nbsp;{{$province}}<br/>
 		<strong>City:</strong>&nbsp;{{$city}}<br/>
