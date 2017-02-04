@@ -398,7 +398,7 @@ class LeagueController extends Controller
 
 
         $oldLeague->fill($league->toArray());
-
+        $oldLeague->type = $league->type;
         $oldLeague->save();
 
         League::destroy($league->id);
