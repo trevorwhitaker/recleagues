@@ -88,6 +88,10 @@
 
 @endsection
 
+@section('styles')
+<link rel="stylesheet" type="text/css" href="/css/background-images.css"/>
+@endsection
+
 @section('scripts')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 @endsection
