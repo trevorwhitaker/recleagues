@@ -13,11 +13,11 @@
 			@if ($league->website != null)
 				<tr>
 					<td width = "20%">Website</td>
-					<td><a href="{{ strpos($league->website, 'http') !== false ? $league->website :  "//" . $league->website }}" target="_blank"> {{ $league->website }} </a></td>
+					<td style="word-wrap: break-word; overflow-wrap: break-word;"><a href="{{ strpos($league->website, 'http') !== false ? $league->website :  "//" . $league->website }}" target="_blank"> {{ $league->website }} </a></td>
 				</tr>
 			@endif
 			<tr>
-				<td>City</td>
+				<td width = "20%">City</td>
 				<td>{{ $league->city }}</td>
 			</tr>
 			<tr>
@@ -34,7 +34,7 @@
 			</tr>
 			@if ($league->person != null)
 				<tr>
-					<td>Contact Name</td>
+					<td>Contact</td>
 					<td>{{ $league->person }}</td>
 				</tr>
 			@endif

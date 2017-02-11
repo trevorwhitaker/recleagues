@@ -8,7 +8,7 @@
 		<strong>Province:</strong>&nbsp;{{$province}}<br/>
 		<strong>City:</strong>&nbsp;{{$city}}<br/>
 		<strong>Sport:</strong>&nbsp;{{$sport}}<br/>
-		<strong>Type:</strong>&nbsp;{{$type}}<br/>
+		<strong>Gender:</strong>&nbsp;{{$type}}<br/>
 		<strong>Website:</strong>&nbsp;{{$website}}<br/>
 		<strong>Contact Name:</strong>&nbsp;{{$person}}<br/>
 		<strong>Phone:</strong>&nbsp;{{$phone}}<br/>

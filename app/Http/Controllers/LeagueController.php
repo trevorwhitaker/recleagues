@@ -363,7 +363,7 @@ class LeagueController extends Controller
         return redirect()->action('LeagueController@show', rawurlencode($league->leaguename) . '-' . $league->id);
     }
 
-    public function denyLeague($id, $authToken)
+    public function denyLeaguePage($id, $authToken)
     {
         $league = League::find($id);
 
@@ -373,9 +373,31 @@ class LeagueController extends Controller
             return redirect('/');
         }
 
+        return view('Leagues.deny')->withLeague($league);
+    }
+
+    public function denyLeague(Request $request)
+    {
+        $league = League::find((int)$request['id']);
+
+        if ($league == null || $league->authToken != $request['authToken'] || $league->validated)
+        {
+            Session::flash('error', 'The league does not exist.');
+            return redirect('/');
+        }
+
         $league->delete();
 
-        Session::flash('success', 'The league has been denied.');
+        $email_data = array(
+          'reason' => $request['reason'],
+        );
+
+        Mail::send('Emails.leagueDenied', $email_data, function($message) use ($league)
+        {
+            $message->to($league->email, $league->leaguename)
+                ->subject('Your league has been denied');
+        });
+        Session::flash('success', 'The league has been denied and the email was sent.');
         return redirect()->action('PagesController@getIndex');
     }
 

@@ -52,7 +52,8 @@
 {{ Form::text('person', null, array('class' => 'form-control', 'maxlength' => '100')) }}
 
 {{ Form::label('phone', 'Contact Phone Number', array('class' => 'addLeagueText')) }}
-{{ Form::text('phone', null, array('class' => 'form-control', 'maxlength' => '20', 'pattern' => "^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$", 'data-parsley-error-message' => "Please enter in the format XXX-XXX-XXXX")) }}
+{{ Form::text('phone', null, array('class' => 'form-control', 'maxlength' => '20', 
+ 'data-parsley-error-message' => "Please enter in the format XXX-XXX-XXXX")) }}
 
 {{ Form::label('description', 'League Description', array('class' => 'addLeagueText')) }}
 {{ Form::textarea('description', null, array('class' => 'form-control', 'style' => 'resize: none;', 'maxlength' => '250')) }}

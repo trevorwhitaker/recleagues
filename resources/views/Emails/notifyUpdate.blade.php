@@ -13,7 +13,7 @@
 		<strong>Province:</strong>&nbsp;{{$province}}<br/>
 		<strong>City:</strong>&nbsp;{{$city}}<br/>
 		<strong>Sport:</strong>&nbsp;{{$sport}}<br/>
-		<strong>Type:</strong>&nbsp;{{$type}}<br/>
+		<strong>Gender:</strong>&nbsp;{{$type}}<br/>
 		@if ($website != null) <strong>Website:</strong>&nbsp;{{$website}}<br/> @endif
 		@if ($person != null)<strong>Contact Name:</strong>&nbsp;{{$person}}<br/> @endif
 		@if ($phone != null)<strong>Phone:</strong>&nbsp;{{$phone}}<br/> @endif

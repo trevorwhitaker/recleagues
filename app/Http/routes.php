@@ -45,6 +45,8 @@ Route::post('leaguesreply/{id}', ['as' => 'leagues.reply', 'uses' => 'LeagueCont
 
 Route::get('leagues/create', ['as' => 'leagues.create', 'uses' => 'LeagueController@create']);
 
+Route::post('leagues/deny', ['as' => 'leagues.deny', 'uses' => 'LeagueController@denyLeague']);
+
 Route::post('leagues/getLeagues', ['as' => 'leagues.getLeagues', 'uses' => 'LeagueController@getLeagues']);
 
 Route::get('leagues/filter/{province}/{sport}/{type}', ['as' => 'leagues.filter', 'uses' => 'LeagueController@filter']);
@@ -71,7 +73,7 @@ Route::get('leagues/confirmEdit/{id}/{authToken}', ['as' => 'leagues.confirmEdit
 
 Route::get('leagues/confirm/{id}/{authToken}', ['as' => 'leagues.confirm', 'uses' => 'LeagueController@confirmLeague']);
 
-Route::get('leagues/deny/{id}/{authToken}', ['as' => 'leagues.deny', 'uses' => 'LeagueController@denyLeague']);
+Route::get('leagues/deny/{id}/{authToken}', ['as' => 'leagues.denyPage', 'uses' => 'LeagueController@denyLeaguePage']);
 
 // Message standard routes
 Route::get('bulletinboard', ['as' => 'comments.index', 'uses' => 'CommentController@index']);

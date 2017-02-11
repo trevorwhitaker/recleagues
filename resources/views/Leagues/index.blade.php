@@ -22,7 +22,7 @@
 						'Ontario' => 'Ontario',
 						'Prince Edward Island' => 'Prince Edward Island',
 						'Quebec' => 'Quebec',
-						'Saskatchewan' => 'Saskatchewan'], $data['province'], ['placeholder' => '', 'class' => 'form-control findLeagueFilters', 'required' => '']) }}
+						'Saskatchewan' => 'Saskatchewan'], $data['province'], ['placeholder' => '', 'id' => 'provinceDropDown', 'class' => 'form-control findLeagueFilters', 'required' => '']) }}
 					</td>
 					<td class="findLeagueTD">
 						@include('Partials._sportsList', array('className' => 'findLeagueFilters', 'showGeneral' => false, 'sport' => $data['sport']))
