@@ -246,6 +246,10 @@ body {
     opacity: 0.15;
 }
 
+.league-page-flag-football:after {
+	background-image: url('../Images/Backgrounds/flag-football.png');
+}
+
 .league-page-hockey:after {
 	background-image: url('../Images/Backgrounds/hockey.PNG');
 }
@@ -260,10 +264,6 @@ body {
 
 .league-page-fast-pitch:after {
 	background-image: url('../Images/Backgrounds/fast-pitch.png');
-}
-
-.league-page-flag-football:after {
-	background-image: url('../Images/Backgrounds/flag-football.png');
 }
 
 .league-page-ultimate-frisbee:after {
