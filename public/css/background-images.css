@@ -1,9 +1,5 @@
-.league-page-flag-football:after {
-	background-image: url('../Images/Backgrounds/flag-football.png');
-}
-
-.league-page-hockey:after {
-	background-image: url('../Images/Backgrounds/hockey.PNG');
+.league-page-ball-hockey:after {
+	background-image: url('../Images/Backgrounds/ball-hockey.jpg');
 }
 
 .league-page-baseball:after {
@@ -11,15 +7,23 @@
 }
 
 .league-page-basketball:after {
-	background-image: url('../Images/Backgrounds/basketball.PNG');
+	background-image: url('../Images/Backgrounds/basketball.png');
+}
+
+.league-page-dodgeball:after {
+	background-image: url('../Images/Backgrounds/dodgeball.jpg');
 }
 
 .league-page-fast-pitch:after {
 	background-image: url('../Images/Backgrounds/fast-pitch.png');
 }
 
-.league-page-ultimate-frisbee:after {
-	background-image: url('../Images/Backgrounds/ultimate-frisbee.png');
+.league-page-flag-football:after {
+	background-image: url('../Images/Backgrounds/flag-football.png');
+}
+
+.league-page-hockey:after {
+	background-image: url('../Images/Backgrounds/hockey.PNG');
 }
 
 .league-page-slo-pitch:after {
@@ -30,14 +34,10 @@
 	background-image: url('../Images/Backgrounds/soccer.png');
 }
 
+.league-page-ultimate-frisbee:after {
+	background-image: url('../Images/Backgrounds/ultimate-frisbee.png');
+}
+
 .league-page-volleyball:after {
 	background-image: url('../Images/Backgrounds/volleyball.PNG');
-}
-
-.league-page-ball-hockey:after {
-	background-image: url('../Images/Backgrounds/ball-hockey.jpg');
-}
-
-.league-page-dodgeball:after {
-	background-image: url('../Images/Backgrounds/dodgeball.jpg');
 }
