@@ -275,7 +275,7 @@ class CommentController extends Controller
 
     public function filter($province, $sport)
     {
-        $comments = Comment::where(array('Province' => $province, 'Sport' => $sport, 'validated' => true))->get();
+        $comments = Comment::where(array('Province' => $province, 'Sport' => $sport, 'validated' => true))->orderBy('city', 'ASC')->orderBy('created_at', 'DESC')->get();
 
         $data = array(
             'comments' => $comments,
