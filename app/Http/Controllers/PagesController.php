@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Input;
 
+use App\League;
+
 use Mail;
 
 use Session;
@@ -14,7 +16,8 @@ class PagesController extends Controller
 {
 	public function getIndex() 
 	{
-		return view('Pages.index');
+        $count = League::where('validated', 1)->count();
+		return view('Pages.index')->withCount($count);
 	}
 
 	public function getFAQ() 
