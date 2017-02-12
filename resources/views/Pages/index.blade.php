@@ -3,7 +3,7 @@
 @section('content')
 
 @section('title', ' | Your recreational sports league directory')
-<p class="default-text" style="color: red; margin-bottom: 20px;">Leagues Currently Registered:&nbsp {{$count}} </p>
+<p class="default-text" style="color: red; margin-bottom: 20px; font-size: 20px;">Leagues Currently Registered:&nbsp {{$count}} </p>
 <div class="main-page">
 
 	<p class="default-text"> Looking for a league to play in? Recreational Leagues is your source.</p>
