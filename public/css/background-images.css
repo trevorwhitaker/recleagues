@@ -1,3 +1,7 @@
+.league-page-hockey:after {
+	background-image: url('../Images/Backgrounds/hockey.PNG');
+}
+
 .league-page-ball-hockey:after {
 	background-image: url('../Images/Backgrounds/ball-hockey.jpg');
 }
@@ -20,10 +24,6 @@
 
 .league-page-flag-football:after {
 	background-image: url('../Images/Backgrounds/flag-football.png');
-}
-
-.league-page-hockey:after {
-	background-image: url('../Images/Backgrounds/hockey.PNG');
 }
 
 .league-page-slo-pitch:after {
