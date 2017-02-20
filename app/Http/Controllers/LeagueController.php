@@ -80,7 +80,7 @@ class LeagueController extends Controller
                'person' => 'max:100',
                'phone' => 'max:20',
                'email' => 'required|email|max:100',
-               'description' => 'max:250',
+               'description' => 'max:300',
                'g-recaptcha-response' => 'required|captcha'
             ));
 
@@ -199,7 +199,7 @@ class LeagueController extends Controller
                'person' => 'max:100',
                'phone' => 'max:20',
                'email' => 'required|email|max:100',
-               'description' => 'max:250',
+               'description' => 'max:300',
                'g-recaptcha-response' => 'required|captcha'
             ));
 
@@ -300,7 +300,7 @@ class LeagueController extends Controller
                'person' => 'max:100',
                'phone' => 'max:20',
                'email' => 'required|email|max:100',
-               'description' => 'max:250'
+               'description' => 'max:300'
             ));
 
         $league->fill($request->all());
@@ -446,7 +446,7 @@ class LeagueController extends Controller
                'person' => 'max:100',
                'phone' => 'max:20',
                'email' => 'required|email|max:100',
-               'description' => 'max:250'
+               'description' => 'max:300'
             ));
 
         $league = new League;

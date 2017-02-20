@@ -1,3 +1,6 @@
+.league-page-ball-hockey:after {
+	background-image: url('../Images/Backgrounds/ball-hockey.jpg');
+}
 
 .league-page-baseball:after {
 	background-image: url('../Images/Backgrounds/baseball.PNG');

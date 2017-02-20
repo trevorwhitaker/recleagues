@@ -53,8 +53,11 @@
 {{ Form::label('phone', 'Contact Phone Number', array('class' => 'addLeagueText')) }}
 {{ Form::text('phone', $league->phone, array('class' => 'form-control', 'maxlength' => '20')) }}
 
-{{ Form::label('description', 'League Description', array('class' => 'addLeagueText')) }}
-{{ Form::textarea('description', $league->description, array('class' => 'form-control', 'style' => 'resize: none;', 'maxlength' => '250')) }}
+<div id="descCount">
+    <label class="addLeagueText">League Description</label>
+    <label class="addLeagueText"> @{{count}} characters remaining </label>
+    {{ Form::textarea('description', $league->description, array('class' => 'form-control', 'style' => 'resize: none;', 'maxlength' => '300', 'v-model' => 'text')) }}
+</div>
 
 @section('styles')
 
@@ -185,6 +188,27 @@
 	      }
 	    }
 	  });
+
+      var descCount = new Vue(
+      {
+        el: '#descCount',
+        data: {
+          text: "{{$league->description}}",
+          count: 300 - {{ strlen($league->description)}}
+        },
+        watch: {
+          text: function() {
+            if (this.count >= 0) {
+                if (this.text.length > 300) {
+                    this.count = 0
+                }
+                else {
+                    this.count = 300 - this.text.length
+                }
+            }
+          }
+        }
+      });
     </script>
 
 @endsection

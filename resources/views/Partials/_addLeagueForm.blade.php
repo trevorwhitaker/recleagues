@@ -55,8 +55,11 @@
 {{ Form::text('phone', null, array('class' => 'form-control', 'maxlength' => '20', 
  'data-parsley-error-message' => "Please enter in the format XXX-XXX-XXXX")) }}
 
-{{ Form::label('description', 'League Description', array('class' => 'addLeagueText')) }}
-{{ Form::textarea('description', null, array('class' => 'form-control', 'style' => 'resize: none;', 'maxlength' => '250')) }}
+<div id="descCount">
+    <label class="addLeagueText">League Description</label>
+    <label class="addLeagueText"> @{{count}} characters remaining </label>
+    {{ Form::textarea('description', null, array('class' => 'form-control', 'style' => 'resize: none;', 'maxlength' => '300', 'v-model' => 'text')) }}
+</div>
 
 @section('styles')
 
@@ -142,16 +145,6 @@
   	<script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
   	<script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
 
-	<script>
-      function countChar(val) {
-        var len = val.value.length;
-        if (len >= 250) {
-          val.value = val.value.substring(0, 250);
-        } else {
-          $('#charNum').text(250 - len);
-        }
-      };
-    </script>
 
     <script>
     var searchCity = new Vue(
@@ -187,6 +180,27 @@
 	      }
 	    }
 	  });
+
+      var descCount = new Vue(
+      {
+        el: '#descCount',
+        data: {
+          text: "",
+          count: 300
+        },
+        watch: {
+          text: function() {
+            if (this.count >= 0) {
+                if (this.text.length > 300) {
+                    this.count = 0
+                }
+                else {
+                    this.count = 300 - this.text.length
+                }
+            }
+          }
+        }
+      });
     </script>
 
 @endsection
