@@ -5,7 +5,7 @@
 @section('title', ' | Your recreational sports league directory')
 
 
-<meta name="description" content="adult recreational sports league directory canada baseball basketball hockey soccer slo pitch slo-pitch men women coed" />
+<meta name="description" content="adult recreational sports league directory canada baseball basketball hockey soccer slo pitch slo-pitch men women coed dodgeball ultimate frisbee volleyball" />
 
 <p class="default-text" style="color: red; margin-bottom: 20px; font-size: 20px;">Leagues Currently Registered:&nbsp {{$count}} </p>
 <div class="main-page">
